@@ -3,7 +3,7 @@ services:
     container_name: nextapp
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: prod.Dockerfile
     ports:
       - "3002:3000"
     volumes:
