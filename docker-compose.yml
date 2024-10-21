@@ -1,0 +1,16 @@
+services:
+  nextapp:
+    container_name: nextapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules  
+    command: "yarn dev"
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true
