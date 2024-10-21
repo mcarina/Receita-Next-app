@@ -24,3 +24,7 @@ _Pré-requisitos: Docker_
 ```
 docker compose up --build -d
 ```
+
+## Contribuição
+
+Este projeto não aceita contribuições externas.
