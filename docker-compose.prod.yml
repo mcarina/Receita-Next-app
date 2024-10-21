@@ -4,18 +4,11 @@ services:
     build:
       context: .
       dockerfile: prod.Dockerfile
+    restart: always
     ports:
       - "3002:3000"
-    volumes:
-      - ./:/app
-      - /app/node_modules  
     networks:
       - my_network
-
-    environment:
-      - NODE_ENV=development
-    stdin_open: true
-    tty: true
 
 networks:
   my_network:
