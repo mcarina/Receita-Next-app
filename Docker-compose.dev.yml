@@ -1,0 +1,16 @@
+services:
+  nextapp:
+    container_name: nextapp-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev  # Usando o Dockerfile.dev correto
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules  # Evita que a pasta node_modules seja sobrescrita
+    command: "yarn dev"  # Certifique-se de usar yarn dev para Next.js
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+    tty: true

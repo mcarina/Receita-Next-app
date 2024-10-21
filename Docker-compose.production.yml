@@ -1,0 +1,12 @@
+services:
+  nextapp:
+    container_name: nextapp-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.production  # Apontando para Dockerfile.production
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+    stdin_open: true
+    tty: true
