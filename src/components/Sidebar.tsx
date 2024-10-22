@@ -7,7 +7,8 @@ import { usePathname } from 'next/navigation'
 import { GiSpellBook } from "react-icons/gi";
 const Sidebar = ({user}: SidebarProps) => {
 
-    const pathname = usePathname();    
+    const pathname = usePathname();   
+     
   return (
     <selection className="sidebar">
         <nav className="flex flex-col gap-4">

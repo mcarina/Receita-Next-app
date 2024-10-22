@@ -360,3 +360,9 @@
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
