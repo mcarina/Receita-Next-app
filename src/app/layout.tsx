@@ -10,8 +10,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Recipe's App",
-  description: "Recipe's App is a platform for sharing and discovering recipes.",
+  title: "Receitas App",
+  description: "Descubra receitas novas para os almoços em familía.",
 };
 
 export default function RootLayout({
