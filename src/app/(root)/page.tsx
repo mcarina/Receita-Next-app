@@ -2,7 +2,7 @@ import HeaderBox from "@/components/HeaderBox";
 
 const Home = () => {
   
-  const loggedIn = { firstName: 'Márcia'}
+  const loggedIn = { firstName: 'Márcia'};
     return (
       <selection className= "home">
         <div className="home-content">
