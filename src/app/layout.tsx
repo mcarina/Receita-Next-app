@@ -10,7 +10,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Receitas App",
+  title: "Recipe App",
   description: "Descubra receitas novas para os almoços em familía.",
 };
 

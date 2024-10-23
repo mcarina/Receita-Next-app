@@ -27,7 +27,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
         <SheetContent side="left" className="border-none bg-white">
           <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
             <GiSpellBook className="size-[30px] max-xl:size-30" color="black" />
-            <h1 className="sidebar-logo">Receitas App</h1>
+            <h1 className="sidebar-logo">Recipe App</h1>
           </Link>
 
           <div className="mobilenav-sheet">

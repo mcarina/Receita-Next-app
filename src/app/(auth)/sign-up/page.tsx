@@ -1,9 +1,11 @@
+import AuthForm from "@/components/AuthForm";
+
 const SingUp = () => {
 
     return (
-      <div className="">
-          SingUp
-      </div>
+      <section className="flex-center size-full max-sm:px:6">
+          <AuthForm type="sign-up"/>
+      </section>
     );
 }
 export default SingUp

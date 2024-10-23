@@ -10,11 +10,11 @@ const Sidebar = ({user}: SidebarProps) => {
     const pathname = usePathname();   
      
   return (
-    <selection className="sidebar">
+    <section className="sidebar">
         <nav className="flex flex-col gap-4">
             <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
                 <GiSpellBook className="size-[30px] max-xl:size-15" color="black" />
-                <h1 className="sidebar-logo">Receitas App</h1>
+                <h1 className="sidebar-logo">Recipe App</h1>
             </Link>
 
             {sidebarLinks.map((item) => {
@@ -33,7 +33,7 @@ const Sidebar = ({user}: SidebarProps) => {
             USER
         </nav> 
             FOOTER
-    </selection>
+    </section>
   )
 }
 

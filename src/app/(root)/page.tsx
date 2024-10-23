@@ -14,7 +14,7 @@ const Home = () => {
     authorRecipe: "author breakfast",
   }
     return (
-      <selection className= "home">
+      <section className= "home">
         <div className="home-content">
           <header className="home-header">
             <HeaderBox
@@ -36,7 +36,7 @@ const Home = () => {
           author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
         />
 
-      </selection>
+      </section>
     );
 }
 export default Home

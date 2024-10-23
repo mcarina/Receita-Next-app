@@ -13,6 +13,7 @@ declare type User = {
     postalCode: string;
     dateOfBirth: string;
     ssn: string;
+    recipes: Recipe[];
   };
   
 
@@ -22,3 +23,9 @@ declare interface HeaderBoxProps {
     subtext: string;
     user?: string;
   }
+
+  declare type Recipe = {
+    id: string;
+    title: string;
+    authorRecipe: string;
+};

@@ -29,11 +29,11 @@ const RightSideBar = ({user, recipeInfo, transactions, author}: RightSideBarProp
         <section className="banks">
             <div className="flex w-full justify-between">
                 <h2 className="header-2">Salvos</h2>
-                <Link href="/minha-receitas" className="flex gap-2">
-                    <TfiPlus className="size-[20px] max-xl:size-20" color="black"/>
+                <Link href="/receitas" className="flex gap-2">
                     <h2 className=" text-14 font-semibold text-gary-600">
                         Adicionar
                     </h2>
+                    <TfiPlus className="size-[20px] max-xl:size-20" color="black"/>
                 </Link>
             </div>
             {author?.length > 0 && (
