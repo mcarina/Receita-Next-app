@@ -1,8 +1,18 @@
 import HeaderBox from "@/components/HeaderBox";
+import RightSideBar from "@/components/RightSideBar";
 
 const Home = () => {
   
-  const loggedIn = { firstName: 'Márcia'};
+  const loggedIn = { 
+    firstName: 'Márcia', 
+    lastName: 'Apolinário',
+    email: 'QWUjv@example.com' 
+  };
+
+  const recipes = {
+    title: "breakfast",
+    authorRecipe: "author breakfast",
+  }
     return (
       <selection className= "home">
         <div className="home-content">
@@ -15,7 +25,17 @@ const Home = () => {
 
             />
           </header>
+
+          Receitas aqui
         </div>
+
+        <RightSideBar 
+          user={loggedIn}
+          recipeInfo={recipes}
+          transactions={[]}
+          author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
+        />
+
       </selection>
     );
 }

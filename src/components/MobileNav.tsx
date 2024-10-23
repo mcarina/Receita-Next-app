@@ -3,15 +3,12 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
-  SheetClose,  // Certifique-se de importar corretamente
+  SheetClose, 
 } from "@/components/ui/sheet"
 
-import { usePathname } from "next/navigation"
-import Link from 'next/link'
+import { usePathname } from "next/navigation";
+import Link from 'next/link';
 import { TfiAlignJustify } from "react-icons/tfi";
 import { GiSpellBook } from "react-icons/gi";
 import { sidebarLinks } from "@/constants";
