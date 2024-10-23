@@ -1,34 +1,63 @@
 'use client'
 
-// import {
-//   Sheet,
-//   SheetContent,
-//   SheetDescription,
-//   SheetHeader,
-//   SheetTitle,
-//   SheetTrigger,
-// } from "@/components/ui/sheet"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,  // Certifique-se de importar corretamente
+} from "@/components/ui/sheet"
 
 import { usePathname } from "next/navigation"
-// import { TfiAlignJustify } from "react-icons/tfi";
+import Link from 'next/link'
+import { TfiAlignJustify } from "react-icons/tfi";
+import { GiSpellBook } from "react-icons/gi";
+import { sidebarLinks } from "@/constants";
+import { cn } from "@/lib/utils";
 
-const MobileNav = ({user}: MobileNavProps) => {
+const MobileNav = ({ user }: MobileNavProps) => {
 
   const pathname = usePathname();
   
   return (
-    <section className="w-fulll max-w-[264px]">
-      {/* <Sheet>
+    <section className="w-full max-w-[264px]">
+      <Sheet>
         <SheetTrigger>
-          <TfiAlignJustify  className="size-[30px] max-xl:size-15" color="black" />
+          <TfiAlignJustify className="size-[30px] max-xl:size-15" color="black" />
         </SheetTrigger>
+        <SheetContent side="left" className="border-none bg-white">
+          <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
+            <GiSpellBook className="size-[30px] max-xl:size-30" color="black" />
+            <h1 className="sidebar-logo">Receitas App</h1>
+          </Link>
+
+          <div className="mobilenav-sheet">
+            <nav className="flex h-full flex-col gap-6 pt-16 text-black">
+              {sidebarLinks.map((item) => {
+                const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`);
+
+                return (
+                  <SheetClose asChild key={item.route}>
+                    <Link href={item.route} className={cn('sidebar-link', { 'bg-bank-gradient': isActive })}>
+                      <div className="relative size-6">
+                        <item.icon fill /> 
+                        <p className={cn('sidebar-label', { '!text-white': isActive })}>
+                          {item.label}
+                        </p>
+                      </div>
+                    </Link>
+                  </SheetClose>
+                );
+              })}
+            </nav>
+          </div>
+
+        </SheetContent>
       </Sheet>
-      <SheetContent side="left" className="border-none bg-white">
-
-      </SheetContent> */}
-
     </section>
   )
 }
 
-export default MobileNav
+export default MobileNav;
