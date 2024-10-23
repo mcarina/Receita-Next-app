@@ -14,7 +14,7 @@ import { Loader2 } from 'lucide-react';
 
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     
     const form = useForm<z.infer<typeof authFormSchema>>({
         resolver: zodResolver(authFormSchema),
