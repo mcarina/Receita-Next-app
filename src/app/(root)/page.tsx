@@ -1,9 +1,22 @@
+'use client'
+import { useState, useEffect } from 'react';
 import HeaderBox from "@/components/HeaderBox";
 import RightSideBar from "@/components/RightSideBar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = async () => {
-  const loggedIn = await getLoggedInUser();
+const Home = () => {
+  const [loggedIn, setLoggedInUser] = useState<User | null>(null);
+  
+  useEffect(() => {
+    const fetchUser = async () => {
+        const user = await getLoggedInUser();
+        console.log('Usuário logado:', user); // Log do usuário
+        setLoggedInUser(user);
+    };
+
+    fetchUser();
+  }, []);
+
   const recipes = {
     title: "breakfast",
     authorRecipe: "author breakfast",
@@ -15,7 +28,7 @@ const Home = async () => {
             <HeaderBox
               type="greeting"
               title="Bem-Vindo(a) "
-              user={loggedIn?.firstName  || ''}
+              user={loggedIn?.name  || 'visitante'}
               subtext="Descubra receitas novas para os almoços em família."
 
             />

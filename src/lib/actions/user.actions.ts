@@ -10,8 +10,6 @@ export const signIn = async (email: string, password: string) => {
         });
         if (response.data.status) {
             const token = response.data.token; 
-            Cookies.set('access_token', token, { expires: 7 }); 
-            console.log('Login bem-sucedido:', token);
             return response.data; 
         } else {
             console.error('Erro na resposta da API:', response.data);
@@ -38,5 +36,26 @@ export const signUp = async ( userData: SignUpParams) => {
 }
 
 export const getLoggedInUser = async () => {
- 
-}
+    try {
+        const token = Cookies.get('access_token'); // Obtém o token
+        console.log('Token de autenticação:', token); // Log do token
+
+        const response = await Api.get('/user-info', {
+            headers: {
+                Authorization: `Bearer ${token}`, // Adiciona o token de autenticação
+            },
+        });
+
+        console.log('Resposta da API:', response.data); // Log da resposta da API
+
+        if (response.data.status) {
+            return response.data.user; // Retorna os dados do usuário
+        } else {
+            console.error('Erro ao recuperar os dados do usuário:', response.data);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error ao buscar usuário:', error); // Log do erro
+        return null;
+    }
+};
