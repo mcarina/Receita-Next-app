@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 
 export const signIn = async (email: string, password: string) => {
     try {
-        //mutation / Database / Make fetch
         const response = await Api.post('/login', {
             email,
             password
@@ -24,15 +23,16 @@ export const signIn = async (email: string, password: string) => {
 
 export const signUp = async ( userData: SignUpParams) => {
     try {
-        //mutation / Database / Make fetch
         const response = await Api.post('/users', userData);
-        if (response.data.status) {
+        if (response.status === 201) {
             console.log('Cadastro bem-sucedido:', response.data);
             return response.data; // Retorna a resposta, caso queira
         } else {
             console.error('Erro na resposta da API:', response.data);
+            return null;
         }
     } catch (error) {
         console.log('Error', error);
+        return null;
     }
 }

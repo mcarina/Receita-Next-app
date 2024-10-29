@@ -30,11 +30,10 @@ const AuthForm = ({ type }: { type: string }) => {
     })
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        setIsLoading(true)
-
+        setIsLoading(true);
+        
         try {
-            
-            if(type === 'sign-up') {
+            if (type === 'sign-up') {
                 const userData = {
                     firstName: data.firstName!,
                     lastName: data.lastName!,
@@ -45,19 +44,21 @@ const AuthForm = ({ type }: { type: string }) => {
                     dateOfBirth: data.dateOfBirth!,
                     ssn: data.ssn!,
                     email: data.email,
-                    password: data.password
-                }
-
-                const newUser = await signUp(data)
-
+                    password: data.password,
+                };
+    
+                const newUser = await signUp(userData); 
+    
                 if (newUser) {
                     setUser(newUser); // Armazena os dados do usuário
                     router.push('/'); 
                 } else {
                     console.error('Erro ao criar o usuário');
+                    // Exibir mensagem de erro para o usuário aqui
                 }
             }
-
+    
+            // Lógica de login permanece a mesma
             if (type === 'sign-in') {
                 const response = await signIn(data.email, data.password);
                 
@@ -71,10 +72,12 @@ const AuthForm = ({ type }: { type: string }) => {
             }
         } catch (error) {
             console.log(error);
+            // Exibir mensagem de erro para o usuário aqui
         } finally {
             setIsLoading(false);
         }
-    }
+    };
+    
     
 
 return (
@@ -88,7 +91,7 @@ return (
             <div className="flex flex-col gap-1 md:gap-3">
                 <h2 className="text-24 lg:text-29 font-semibold text-gray-900">
                     {user ? 'Link Account' : type === 'sign-in' ? 'Sign In' : 'Sign Up'}
-                    <p className="text-16 font-normal text-gray-600"> {user ? "Faça seu login para iniciar" : "Please enter yout details"} </p>
+                    <p className="text-16 font-normal text-gray-600"> {user ? "Link your account to get started" : "Please enter yout details"} </p>
                 </h2>
             </div>
         </header>
@@ -105,10 +108,10 @@ return (
     
                 {type === 'sign-up' && (
                     <>
-                    {/* <div className="flex gap-4"> */}
-                        <CustomInput control={form.control} name='name' label="Nome" placeholder='Seu Nome' />
-                        {/* <CustomInput control={form.control} name='lastName' label="Sobrenome" placeholder='Sobrenome' /> */}
-                    {/* </div> */}
+                    <div className="flex gap-4">
+                        <CustomInput control={form.control} name='firstName' label="Nome" placeholder='Seu Nome' />
+                        <CustomInput control={form.control} name='lastName' label="Sobrenome" placeholder='Sobrenome' />
+                    </div>
                     <CustomInput control={form.control} name='address1' label="Endereço" placeholder='Seu endereço' />
                     <CustomInput control={form.control} name='city' label="Cidade" placeholder='Sua cidade' />
                     <div className="flex gap-4">
@@ -117,7 +120,7 @@ return (
                     </div>
                     <div className="flex gap-4">
                         <CustomInput control={form.control} name='dateOfBirth' label="Data de nascimento" placeholder='DD-MM-YYYY' />
-                        <CustomInput control={form.control} name='ssn' label="CPF" placeholder='Ex: 000.000.000-00' />
+                        <CustomInput control={form.control} name='cpf' label="CPF" placeholder='Ex: 000.000.000-00' />
                     </div>
                     </>
                 )}
