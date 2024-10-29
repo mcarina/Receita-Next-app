@@ -15,6 +15,17 @@ declare type User = {
     ssn: string;
     recipes: Recipe[];
   };
+
+declare interface getUserInfoProps {
+    userId: string;
+  }
+
+declare interface RightSidebarProps {
+    user: User;
+    transactions: Transaction[];
+    banks: Bank[] & Account[];
+}
+  
   
 declare interface MobileNavProps {
   user: User;
@@ -23,8 +34,6 @@ declare interface MobileNavProps {
 declare interface SiderbarProps {
   user: User;
 }
-
-
 
 declare interface HeaderBoxProps {
   type?: "title" | "greeting";

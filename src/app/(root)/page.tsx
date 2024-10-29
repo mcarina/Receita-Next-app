@@ -1,14 +1,9 @@
 import HeaderBox from "@/components/HeaderBox";
 import RightSideBar from "@/components/RightSideBar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = () => {
-  
-  const loggedIn = { 
-    firstName: 'Márcia', 
-    lastName: 'Apolinário',
-    email: 'QWUjv@example.com' 
-  };
-
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
   const recipes = {
     title: "breakfast",
     authorRecipe: "author breakfast",
@@ -20,7 +15,7 @@ const Home = () => {
             <HeaderBox
               type="greeting"
               title="Bem-Vindo(a) "
-              user={loggedIn.firstName} 
+              user={loggedIn?.firstName  || ''}
               subtext="Descubra receitas novas para os almoços em família."
 
             />

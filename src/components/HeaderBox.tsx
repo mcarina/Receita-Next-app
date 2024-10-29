@@ -1,6 +1,6 @@
 const HeaderBox = ({ type = "title", title, subtext, user }: HeaderBoxProps) => {
   return (
-    <div clas1sName="header-box">
+    <div className="header-box">
         <h1 className="header-box-title">
             {title}
             {type === 'greeting' && ( 

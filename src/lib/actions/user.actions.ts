@@ -26,7 +26,7 @@ export const signUp = async ( userData: SignUpParams) => {
         const response = await Api.post('/users', userData);
         if (response.status === 201) {
             console.log('Cadastro bem-sucedido:', response.data);
-            return response.data; // Retorna a resposta, caso queira
+            return response.data; // Retorna a resposta
         } else {
             console.error('Erro na resposta da API:', response.data);
             return null;
@@ -35,4 +35,8 @@ export const signUp = async ( userData: SignUpParams) => {
         console.log('Error', error);
         return null;
     }
+}
+
+export const getLoggedInUser = async () => {
+ 
 }
