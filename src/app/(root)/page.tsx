@@ -1,21 +1,11 @@
-'use client'
-import { useState, useEffect } from 'react';
 import HeaderBox from "@/components/HeaderBox";
 import RightSideBar from "@/components/RightSideBar";
+import TotalBalanceBox from "@/components/TotalBalanceBox ";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = () => {
-  const [loggedIn, setLoggedInUser] = useState<User | null>(null);
-  
-  useEffect(() => {
-    const fetchUser = async () => {
-        const user = await getLoggedInUser();
-        console.log('Usuário logado:', user); // Log do usuário
-        setLoggedInUser(user);
-    };
+const Home = async () => {
 
-    fetchUser();
-  }, []);
+const loggedIn = await getLoggedInUser();
 
   const recipes = {
     title: "breakfast",
@@ -32,10 +22,13 @@ const Home = () => {
               subtext="Descubra receitas novas para os almoços em família."
 
             />
+
+            <TotalBalanceBox/>
+
           </header>
 
-          Receitas aqui
         </div>
+        
 
         <RightSideBar 
           user={loggedIn}

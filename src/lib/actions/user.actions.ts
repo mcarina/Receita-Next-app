@@ -1,15 +1,18 @@
 'use server';
 import { Api } from "../contexts/api";
-import Cookies from 'js-cookie';
+import { cookies } from "next/headers";
 
 export const signIn = async (email: string, password: string) => {
     try {
-        const response = await Api.post('/login', {
-            email,
-            password
-        });
+        const response = await Api.post('/login', { email, password });
         if (response.data.status) {
             const token = response.data.token; 
+
+            cookies().set('access_token', token, {
+                httpOnly: true, 
+                path: '/',
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            });
             return response.data; 
         } else {
             console.error('Erro na resposta da API:', response.data);
@@ -37,25 +40,30 @@ export const signUp = async ( userData: SignUpParams) => {
 
 export const getLoggedInUser = async () => {
     try {
-        const token = Cookies.get('access_token'); // Obtém o token
-        console.log('Token de autenticação:', token); // Log do token
+        const token = cookies().get('access_token');
+        if (!token) {
+            console.log('Nenhum token encontrado');
+            return null; 
+        }
 
         const response = await Api.get('/user-info', {
             headers: {
-                Authorization: `Bearer ${token}`, // Adiciona o token de autenticação
+                Authorization: `Bearer ${token.value}`,
             },
         });
 
-        console.log('Resposta da API:', response.data); // Log da resposta da API
-
         if (response.data.status) {
-            return response.data.user; // Retorna os dados do usuário
+            return response.data.user;
         } else {
             console.error('Erro ao recuperar os dados do usuário:', response.data);
             return null;
         }
     } catch (error) {
-        console.error('Error ao buscar usuário:', error); // Log do erro
+        console.error('Erro ao buscar informações do usuário:', error);
         return null;
     }
 };
+
+export const logoutAccount = async () => {
+    
+}

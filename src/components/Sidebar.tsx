@@ -5,11 +5,12 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GiSpellBook } from "react-icons/gi";
-const Sidebar = ({user}: SidebarProps) => {
+import Footer from './Footer'
+const Sidebar = ({user}: SiderbarProps) => {
 
     const pathname = usePathname();   
-     
-  return (
+    
+return (
     <section className="sidebar">
         <nav className="flex flex-col gap-4">
             <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
@@ -32,9 +33,13 @@ const Sidebar = ({user}: SidebarProps) => {
             })}
             USER
         </nav> 
-            FOOTER
+            
+        <Footer
+            user={user}
+        />
+
     </section>
-  )
+)
 }
 
 export default Sidebar

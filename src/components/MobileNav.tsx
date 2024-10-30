@@ -13,6 +13,7 @@ import { TfiAlignJustify } from "react-icons/tfi";
 import { GiSpellBook } from "react-icons/gi";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
+import Footer from "./Footer";
 
 const MobileNav = ({ user }: MobileNavProps) => {
 
@@ -31,24 +32,28 @@ const MobileNav = ({ user }: MobileNavProps) => {
           </Link>
 
           <div className="mobilenav-sheet">
-            <nav className="flex h-full flex-col gap-6 pt-16 text-black">
-              {sidebarLinks.map((item) => {
-                const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`);
+            <SheetClose asChild>
+              <nav className="flex h-full flex-col gap-6 pt-16 text-black">
+                {sidebarLinks.map((item) => {
+                  const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`);
 
-                return (
-                  <SheetClose asChild key={item.route}>
-                    <Link href={item.route} className={cn('sidebar-link', { 'bg-bank-gradient': isActive })}>
-                      <div className="relative size-6">
-                        <item.icon fill /> 
-                        <p className={cn('sidebar-label', { '!text-white': isActive })}>
-                          {item.label}
-                        </p>
-                      </div>
-                    </Link>
-                  </SheetClose>
-                );
-              })}
-            </nav>
+                  return (
+                    <SheetClose asChild key={item.route}>
+                      <Link href={item.route} className={cn('sidebar-link', { 'bg-bank-gradient': isActive })}>
+                        <div className="relative size-6">
+                          <item.icon fill /> 
+                          <p className={cn('sidebar-label', { '!text-white': isActive })}>
+                            {item.label}
+                          </p>
+                        </div>
+                      </Link>
+                    </SheetClose>
+                  );
+                })}
+                user
+              </nav>
+            </SheetClose>
+            <Footer user={user} type="mobile" />
           </div>
 
         </SheetContent>

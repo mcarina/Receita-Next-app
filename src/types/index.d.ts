@@ -45,12 +45,12 @@ declare interface HeaderBoxProps {
 declare type Recipe = {
   id: string;
   title: string;
-    authorRecipe: string;
-  };
+  authorRecipe: string;
+};
   
 declare interface signInProps {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 declare type SignUpParams = {
@@ -65,3 +65,8 @@ declare type SignUpParams = {
   email: string;
   password: string;
 };
+
+declare interface FooterProps {
+  user?: User;
+  type?: 'mobile' | 'desktop'
+}
