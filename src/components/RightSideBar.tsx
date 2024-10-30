@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { TfiPlus } from "react-icons/tfi";
 import RecipeCard from './RecipeCard';
 
-const RightSideBar = ({user, recipeInfo, transactions, author}: RightSideBarProps) => {
+const RightSideBar = ({user, recipeInfo, transactions, author}: RightSidebarProps) => {
   return (
     <aside className="right-sidebar">
         <section className="flex flex-col pd-8">

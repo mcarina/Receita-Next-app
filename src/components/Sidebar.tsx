@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GiSpellBook } from "react-icons/gi";
 import Footer from './Footer'
+
 const Sidebar = ({user}: SiderbarProps) => {
 
     const pathname = usePathname();   

@@ -1,8 +1,24 @@
+import RightSideBar from '@/components/RightSideBar'
+import { getLoggedInUser } from '@/lib/actions/user.actions'
 import React from 'react'
 
-const Perfil = () => {
+const Perfil = async () => {
+  const loggedIn = await getLoggedInUser();
+
+  const recipes = {
+    title: "breakfast",
+    authorRecipe: "author breakfast",
+  }
+  
   return (
-    <div>Perfil</div>
+    <div>
+        <RightSideBar 
+          user={loggedIn}
+          recipeInfo={recipes}
+          transactions={[]}
+          author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
+        />
+    </div>
   )
 }
 
