@@ -1,9 +1,10 @@
 import RightSideBar from '@/components/RightSideBar'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
-import React from 'react'
+import { redirect } from "next/navigation"
 
 const Perfil = async () => {
   const loggedIn = await getLoggedInUser();
+  if(!loggedIn) redirect('/sign-in')
 
   const recipes = {
     title: "breakfast",

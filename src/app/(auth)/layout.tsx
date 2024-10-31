@@ -15,9 +15,13 @@ export default function RootLayout({
             <h1 className="sidebar-logo">Recipe App</h1>
             </div>
             <p className="text-18 truncate text-gray-700 font-semibold">
-              Mergulhe neste mundo repleto de sabores e descubra o chef que há em você. 
+              Mergulhe neste mundo repleto de sabores 
               <br/>
-              Explore, crie e surpreenda-se com cada prato que preparar!</p>
+              e descubra o chef que há em você. 
+              <br/>
+              Explore, crie e surpreenda-se com 
+              <br/>
+              cada prato que preparar!</p>
           </div>
       </main>
   

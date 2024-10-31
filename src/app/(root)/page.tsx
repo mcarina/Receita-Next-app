@@ -15,7 +15,7 @@ const loggedIn = await getLoggedInUser();
               type="greeting"
               title="Bem-Vindo(a) "
               user={loggedIn?.name  || ' '}
-              subtext="Descubra receitas novas para os almoços em família."
+              subtext="Descubra novas inspirações culinárias e transforme suas refeições em momentos inesquecíveis."
 
             />
 
