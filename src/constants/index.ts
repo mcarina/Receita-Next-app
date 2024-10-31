@@ -11,9 +11,4 @@ export const sidebarLinks = [
       route: "/perfil",
       label: "Meu Perfil",
     },
-    {
-      icon: GiNotebook , 
-      route: "/receitas",
-      label: "minhas receitas",
-    },
   ];

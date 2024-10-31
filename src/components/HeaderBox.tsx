@@ -1,5 +1,4 @@
 const HeaderBox = ({ type = "title", title, subtext, user }: HeaderBoxProps) => {
-  console.log('User prop no HeaderBox:', user); 
   return (
     <div className="header-box">
         <h1 className="header-box-title">

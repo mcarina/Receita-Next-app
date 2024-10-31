@@ -1,11 +1,20 @@
+import { logoutAccount } from "@/lib/actions/user.actions";
 import { LuLogOut } from "react-icons/lu";
+import { useRouter } from 'next/navigation'
 
 const Footer = ({user, type = 'desktop'}: FooterProps) => {
+    const router = useRouter();
+
+    const handleLogOut = async () => {
+        const loggedOut = await logoutAccount();
+           if(loggedOut)router.push('/sign-in') // Redireciona para a página de login após deslogar
+    }
+    
     return (
     <footer className="footer">
         <div className={type === 'mobile' ? 'footer_name-mobile' : 'footer_name'}>
             <p className="text-xl font-bold text-gray-700">
-            {user?.name?.[0] ?? 'Visitante'}
+            {user?.name?.[0] ?? 'V'}
             </p>
         </div>
 
@@ -18,7 +27,7 @@ const Footer = ({user, type = 'desktop'}: FooterProps) => {
             </p>
         </div>
 
-        <div className="footer_image">
+        <div className="footer_image" onClick={handleLogOut}>
             <LuLogOut className="size-[20px] max-xl:size-15" color="black" />
         </div>
 

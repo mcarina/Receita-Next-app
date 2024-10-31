@@ -64,7 +64,6 @@ const AuthForm = ({ type }: { type: string }) => {
                 const response = await signIn(data.email, data.password);
                 
                 if (response && response.token) {
-                    console.log('Token recebido:', response.token); 
                     setUser(response);
                     router.push('/');
                 } else {
