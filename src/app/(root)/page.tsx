@@ -1,4 +1,5 @@
 import HeaderBox from "@/components/HeaderBox";
+import Recipes from "@/components/Recipes";
 import RightSideBar from "@/components/RightSideBar";
 import TotalBalanceBox from "@/components/TotalBalanceBox ";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
@@ -16,12 +17,14 @@ const loggedIn = await getLoggedInUser();
               title="Bem-Vindo(a) "
               user={loggedIn?.name  || ' '}
               subtext="Descubra novas inspirações culinárias e transforme suas refeições em momentos inesquecíveis."
-
             />
 
             <TotalBalanceBox/>
 
           </header>
+
+          <Recipes 
+          />
 
         </div>
         

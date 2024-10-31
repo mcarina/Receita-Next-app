@@ -26,6 +26,11 @@ declare interface RightSidebarProps {
     banks: Bank[] & Account[];
 }
   
+declare interface RecipeSideBarProps {
+  user: User;
+  transactions: Transaction[];
+  banks: Bank[] & Account[];
+}
   
 declare interface MobileNavProps {
   user: User;
@@ -69,4 +74,9 @@ declare type SignUpParams = {
 declare interface FooterProps {
   user?: User;
   type?: 'mobile' | 'desktop'
+}
+
+declare interface RecipeTabItemProps {
+  account: Account;
+  appwriteItemId?: string;
 }

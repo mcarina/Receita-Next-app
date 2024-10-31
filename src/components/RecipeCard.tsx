@@ -3,7 +3,7 @@ import Link from 'next/link';
 const RecipeCard = ({account, authorRecipe, titleRecipe, showBalance = true}: RecipesProps) => {
   return (
     <div className="flex flex-col">
-        <Link href="/" className="bank-card">
+        <Link href="/recipe" className="bank-card">
             <div className="bank-card_content">
                 <div>
                     <h1 className="text-16 font-semibold text-white">

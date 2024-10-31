@@ -9,6 +9,6 @@ export const sidebarLinks = [
     {
       icon: GiCook ,
       route: "/perfil",
-      label: "Meu Perfil",
+      label: "Perfil",
     },
   ];
