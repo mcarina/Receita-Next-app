@@ -14,7 +14,7 @@ const loggedIn = await getLoggedInUser();
             <HeaderBox
               type="greeting"
               title="Bem-Vindo(a) "
-              user={loggedIn?.name  || 'visitante'}
+              user={loggedIn?.name  || ' '}
               subtext="Descubra receitas novas para os almoços em família."
 
             />

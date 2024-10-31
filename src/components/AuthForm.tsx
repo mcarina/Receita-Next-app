@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-// import { GiSpellBook } from "react-icons/gi";
+import { GiSpellBook } from "react-icons/gi";
 
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -84,7 +84,7 @@ return (
     <section className="auth-form">
         <header className="flex flex-col gap-5 md:gap-8">
             <Link href="/" className="mb-12 cursor-pointer flex items-center gap-1">
-                {/* <GiSpellBook className="size-[30px] max-xl:size-15" color="black" /> */}
+                <GiSpellBook className="size-[30px] max-xl:size-15" color="black" />
                 <h1 className="sidebar-logo">Recipe App</h1>
             </Link>
 
