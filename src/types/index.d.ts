@@ -80,3 +80,22 @@ declare interface RecipeTabItemProps {
   account: Account;
   appwriteItemId?: string;
 }
+
+declare interface RecentRecipes {
+  id?: string;
+  recipes: { 
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    ingredients: Array<{
+      name: string;
+      amount: string;
+    }>;
+  }[];
+}
+
+declare interface RecipeTabItemProps {
+  item: { id?: string; name?: string; category?: string };
+  recipe: Recipe;
+}

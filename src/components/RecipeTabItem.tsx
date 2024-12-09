@@ -2,42 +2,35 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { cn, formUrlQuery } from "@/lib/utils";
 
-export const RecipeTabItem = () => {
+export const RecipeTabItem = ({ item, recipe }: RecipeTabItemProps ) => {
 
     const searchParams = useSearchParams();
-    const router = useRouter();
-    
-    const mockAccount = {
-        id: "1",
-        name: "Receita de Panquecas",
-        appwriteItemId: "recipe-1"
-    };
+    const router = useRouter(); 
+    const isActive = item === recipe?.id;
 
-    const appwriteItemId = "recipe-1";
-    
-    const isActive = appwriteItemId === mockAccount.appwriteItemId;
-
-    const handleRecipeChange = () => {
+    const handleChange = () => {
         const newUrl = formUrlQuery({
             params: searchParams.toString(),
             key: "id",
-            value: mockAccount.appwriteItemId,
+            value: item.id,
         });
         router.push(newUrl, { scroll: false });
-    };
+        };
 
-  return (
+return (
     <div
-    onClick={handleRecipeChange}
-    className={cn("recipe-tab-item", {
-        "border-blue-600": isActive,
-    })}
->
-    <p className={cn("text-16 line-clamp-1 flex-1 font-medium text-gray-500", {
-        "text-blue-600": isActive,
-    })}>
-        {mockAccount.name}
-    </p>
-</div>
-  )
-}
+        onClick={handleChange}
+        className={cn(`banktab-item`, {
+            "border-blue-600": isActive,
+        })}
+    >
+        <p
+        className={cn("text-16 line-clamp-1 flex-1 font-medium text-gray-500", {
+            "text-blue-600": isActive,
+        })}
+        >
+        {item.category}
+        </p>
+    </div>
+    );
+};
