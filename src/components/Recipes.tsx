@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RecipeTabItem } from './RecipeTabItem';
 import { getRecipe } from '@/lib/actions/recipe.actions';
+import RecipeInfo from './RecipeInfo';
 
 const Recipes = async ({ id }: RecentRecipes) => {
   
@@ -10,11 +11,13 @@ const Recipes = async ({ id }: RecentRecipes) => {
   if (!recipesData || !recipesData.recipes.length) {
     return (
       <section className="recent-transactions">
-        <header className="flex items-center justify-between">
-          <h2 className="recent-transactions-label">Lista de receitas</h2>
-          <Link href={`/recipes/?id=${id}`} className="view-all-btn">
-            ver todos
-          </Link>
+        <header>
+          <div className="total-balance flex items-center justify-between">
+            <h2 className="recent-transactions-label">Lista de receitas</h2>
+            <Link href={`/recipes/?id=${id}`} className="create-btn">
+              Criar Receitas
+            </Link>
+          </div>
         </header>
         <p>Não há receitas disponíveis no momento.</p>
       </section>
@@ -23,18 +26,21 @@ const Recipes = async ({ id }: RecentRecipes) => {
 
   return (
     <section className="recent-transactions">
-      <header className="flex items-center justify-between">
-        <h2 className="recent-transactions-label">Lista de receitas</h2>
-        <Link href={`/recipes/?id=${id}`} className="view-all-btn">
-          ver todos
-        </Link>
+
+      <header>
+        <div className="total-balance flex items-center justify-between">
+          <h2 className="recipes-label">Lista de receitas</h2>
+          <Link href={`/recipes/?id=${id}`} className="p-btn">
+            Criar Receitas
+          </Link>
+        </div>
       </header>
 
       <Tabs defaultValue={id} className="w-full">
-        <TabsList className="recent-transactions-tablist">
+        <TabsList className="recipe-title-tablist">
           {recipesData.recipes.map((recipe) => (
             <TabsTrigger key={recipe.id} value={recipe.category.category}>
-              <RecipeTabItem item={recipe} activeId={id} queryKey="category" />
+              <RecipeTabItem item={recipe} isActive={id} queryKey="category" />
             </TabsTrigger>
           ))}
         </TabsList>
@@ -45,19 +51,8 @@ const Recipes = async ({ id }: RecentRecipes) => {
             value={recipe.category.category}
             className="space-y-4"
           >
-            <div>
-              <p><strong>{recipe.title}</strong></p> 
-              <p>{recipe.description}</p>
-
-              <p><strong>ingredients:</strong></p> 
-              <ul>
-                {recipe.ingredients.map((ingredient, id) => (
-                  <li key={id}>
-                    {ingredient.name}: {ingredient.amount}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <RecipeInfo recipe={recipe} />
+  
           </TabsContent>
         ))}
       </Tabs>

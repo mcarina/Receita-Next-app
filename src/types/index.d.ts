@@ -76,11 +76,6 @@ declare interface FooterProps {
   type?: 'mobile' | 'desktop'
 }
 
-declare interface RecipeTabItemProps {
-  account: Account;
-  appwriteItemId?: string;
-}
-
 declare interface RecentRecipes {
   id?: string;
   recipes: { 
@@ -98,4 +93,12 @@ declare interface RecentRecipes {
 declare interface RecipeTabItemProps {
   item: { id?: string; name?: string; category?: string };
   recipe: Recipe;
+}
+
+declare interface RecipeInfoProps {
+  recipe: {
+    title: string;
+    description: string;
+    ingredients: { name: string; amount: string }[];
+  };
 }

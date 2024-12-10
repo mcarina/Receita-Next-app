@@ -1,7 +1,5 @@
 import HeaderBox from "@/components/HeaderBox";
 import Recipes from "@/components/Recipes";
-import RightSideBar from "@/components/RightSideBar";
-import TotalBalanceBox from "@/components/TotalBalanceBox ";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async () => {
@@ -18,8 +16,6 @@ const loggedIn = await getLoggedInUser();
               user={loggedIn?.name  || ' '}
               subtext="Descubra novas inspirações culinárias e transforme suas refeições em momentos inesquecíveis."
             />
-
-            <TotalBalanceBox/>
 
           </header>
 
