@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//     output: 'standalone'
+// };
+
 const nextConfig = {
-    output: 'standalone'
+    output: 'export',
+    basePath: '/Receita-Next-app',
+    assetPrefix: '/Receita-Next-app/',
 };
 
 module.exports = {
