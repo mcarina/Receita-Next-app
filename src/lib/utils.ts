@@ -20,7 +20,7 @@ export const authFormSchema = (type: string) => z.object({
   cpf: type === 'sign-in' ? z.string().optional() : z.string().max(11),
   //
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(4),
 })
 
 interface UrlQueryParams {

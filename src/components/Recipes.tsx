@@ -14,7 +14,7 @@ const Recipes = async ({ id }: RecentRecipes) => {
         <header>
           <div className="total-balance flex items-center justify-between">
             <h2 className="recent-transactions-label">Lista de receitas</h2>
-            <Link href={`/recipes/?id=${id}`} className="create-btn">
+            <Link href={'/receitas'} className="create-btn">
               Criar Receitas
             </Link>
           </div>
@@ -30,7 +30,7 @@ const Recipes = async ({ id }: RecentRecipes) => {
       <header>
         <div className="total-balance flex items-center justify-between">
           <h2 className="recipes-label">Lista de receitas</h2>
-          <Link href={`/recipes/?id=${id}`} className="p-btn">
+          <Link href={'receitas'} className="p-btn">
             Criar Receitas
           </Link>
         </div>

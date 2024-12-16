@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { cn, formUrlQuery } from "@/lib/utils";
+import { formUrlQuery } from "@/lib/utils";
 
 const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
     const router = useRouter();
-    const searchParams = useSearchParams();
-
     const [showIngredients, setShowIngredients] = useState(false);
 
     const handleChange = () => {
         const newUrl = formUrlQuery({
-            params: searchParams.toString(),
+            params: new URLSearchParams(window.location.search).toString(),
             key: "id",
             value: recipe?.id ?? "", 
         });
