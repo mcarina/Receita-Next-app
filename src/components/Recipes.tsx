@@ -38,21 +38,16 @@ const Recipes = async ({ id }: RecentRecipes) => {
 
       <Tabs defaultValue={id} className="w-full">
         <TabsList className="recipe-title-tablist">
-          {recipesData.recipes.map((recipe) => (
-            <TabsTrigger key={recipe.id} value={recipe.category.category}>
-              <RecipeTabItem item={recipe} isActive={id} queryKey="category" />
+          {recipesData.recipes.map((recipe: Recipe) => (
+            <TabsTrigger key={recipe.id} value={recipe.id}>
+              <RecipeTabItem key={recipe.id} recipe={recipe} id={id} />
             </TabsTrigger>
           ))}
         </TabsList>
 
-        {recipesData.recipes.map((recipe) => (
-          <TabsContent
-            key={recipe.id}
-            value={recipe.category.category}
-            className="space-y-4"
-          >
-            <RecipeInfo recipe={recipe} />
-  
+        {recipesData.recipes.map((recipe: Recipe) => (
+          <TabsContent>
+            <RecipeInfo recipe={recipe} id={id}/>
           </TabsContent>
         ))}
       </Tabs>

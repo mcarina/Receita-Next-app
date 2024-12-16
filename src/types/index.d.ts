@@ -48,7 +48,7 @@ declare interface HeaderBoxProps {
 }
 
 declare type Recipe = {
-  id: string;
+  id?: string;
   title: string;
   authorRecipe: string;
 };
@@ -78,6 +78,7 @@ declare interface FooterProps {
 
 declare interface RecentRecipes {
   id?: string;
+  page: number;
   recipes: { 
     id: string;
     title: string;
@@ -91,14 +92,21 @@ declare interface RecentRecipes {
 }
 
 declare interface RecipeTabItemProps {
-  item: { id?: string; name?: string; category?: string };
-  recipe: Recipe;
+  id?: string;
+  recipe: Recipe[
+    {
+      category: string;
+    }
+  ];
 }
 
 declare interface RecipeInfoProps {
-  recipe: {
-    title: string;
-    description: string;
-    ingredients: { name: string; amount: string }[];
-  };
+  recipe: Recipe;
+  id?: string;
 }
+
+declare type SearchParamProps = {
+  params: { [key: string]: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+

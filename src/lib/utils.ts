@@ -23,6 +23,12 @@ export const authFormSchema = (type: string) => z.object({
   password: z.string().min(6),
 })
 
+interface UrlQueryParams {
+  params: string;
+  key: string;
+  value: string;
+}
+
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   const currentUrl = qs.parse(params);
 
@@ -36,3 +42,4 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
     { skipNull: true }
   );
 }
+

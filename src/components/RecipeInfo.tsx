@@ -1,22 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import {
-    Sheet,
-    SheetContent,
-    SheetTrigger,
-    SheetClose, 
-} from "@/components/ui/sheet"
+import { useSearchParams, useRouter } from "next/navigation";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { cn, formUrlQuery } from "@/lib/utils";
 
 const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     const [showIngredients, setShowIngredients] = useState(false);
+
+    const handleChange = () => {
+        const newUrl = formUrlQuery({
+            params: searchParams.toString(),
+            key: "id",
+            value: recipe?.id ?? "", 
+        });
+        router.push(newUrl, { scroll: false });
+        };
+    
     
     const toggleIngredients = () => {
         setShowIngredients(prevState => !prevState);
     };
 
 return (
-    <div className="p-4 border rounded-md shadow-md bg-white space-y-2">
+    <div onClick={handleChange}  className="p-4 border rounded-md shadow-md bg-white space-y-2">
         <p className="text-lg font-bold text-gray-900">{recipe.title}</p>
         <p className="text-sm text-gray-700">{recipe.description}</p>
 
@@ -35,7 +45,7 @@ return (
                             <ul className="list-disc list-inside text-sm text-gray-600">
                             {recipe.ingredients.map((ingredient, id) => (
                                 <li key={id}>
-                                <span className="font-medium text-gray-800">{ingredient.name}</span>: {ingredient.amount}
+                                    <span className="font-medium text-gray-800">{ingredient.name}</span>: {ingredient.amount}
                                 </li>
                             ))}
                             </ul>

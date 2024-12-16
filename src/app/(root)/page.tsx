@@ -2,9 +2,9 @@ import HeaderBox from "@/components/HeaderBox";
 import Recipes from "@/components/Recipes";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = async () => {
-
-const loggedIn = await getLoggedInUser();
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
+  const loggedIn = await getLoggedInUser();
 
     return (
       <section className= "home">
@@ -20,6 +20,8 @@ const loggedIn = await getLoggedInUser();
           </header>
 
           <Recipes 
+            id={id as string}
+            page={currentPage}
           />
 
         </div>

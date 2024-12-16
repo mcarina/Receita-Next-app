@@ -2,17 +2,17 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { cn, formUrlQuery } from "@/lib/utils";
 
-export const RecipeTabItem = ({ item, recipe }: RecipeTabItemProps ) => {
+export const RecipeTabItem = ({ recipe }: RecipeTabItemProps ) => {
 
     const searchParams = useSearchParams();
     const router = useRouter(); 
-    const isActive = item === recipe?.id;
+    const isActive = searchParams.get("id") === String(recipe.id);
 
     const handleChange = () => {
         const newUrl = formUrlQuery({
             params: searchParams.toString(),
             key: "id",
-            value: item.id,
+            value: recipe?.id,
         });
         router.push(newUrl, { scroll: false });
         };
@@ -29,7 +29,7 @@ return (
             "text-blue-600": isActive,
         })}
         >
-        {item.category}
+        {recipe.category}
         </p>
     </div>
     );

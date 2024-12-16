@@ -3,7 +3,6 @@ import { Api } from "../contexts/api";
 
 export const getRecipe = async () => {
     try {
-        // Faz a requisição para a API
         const response = await Api.get('/recipes');
         const data = response.data;
 
@@ -11,7 +10,6 @@ export const getRecipe = async () => {
             throw new Error("Erro ao buscar receitas: status inválido");
         }
 
-        // Transforma os dados para incluir apenas o nome da categoria
         const transformedRecipes = data.recipe.data.map((recipe: any) => ({
             id: recipe.id,
             title: recipe.title,
@@ -33,6 +31,37 @@ export const getRecipe = async () => {
         };
     } catch (error: any) {
         console.error("Erro ao buscar receitas:", error.message);
-        throw new Error("Não foi possível carregar as receitas");
+        // Dados mockados para fallback
+        const mockRecipes = [
+            {
+                id: 1,
+                title: "Recipe 1",
+                description: "This is a mock description for recipe 1.",
+                category: "Breakfast",
+                user: "John Doe",
+                ingredients: [
+                    { name: "Ingredient 1", amount: "2 cups" },
+                    { name: "Ingredient 2", amount: "1 tbsp" },
+                ],
+            },
+            {
+                id: 2,
+                title: "Recipe 2",
+                description: "This is a mock description for recipe 2.",
+                category: "Dinner",
+                user: "Jane Doe",
+                ingredients: [
+                    { name: "Ingredient A", amount: "100g" },
+                    { name: "Ingredient B", amount: "200ml" },
+                ],
+            },
+        ];
+
+        // Retorna os dados mockados
+        return {
+            currentPage: 1,
+            lastPage: 1,
+            recipes: mockRecipes,
+        };
     }
 };
