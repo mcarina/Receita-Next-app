@@ -35,12 +35,13 @@ return (
                 </SheetTrigger>
                 <SheetContent className="w-full">
                     <SheetClose asChild>
-                        <div className="p-5 border rounded-md shadow-md bg-white space-y-2">
+                        <div className="p-5 rounded-md shadow-md bg-white space-y-3">
                             <p className="text-lg font-bold text-gray-900">{recipe.title}</p>
                             <p className="text-sm text-gray-700">{recipe.description}</p>
 
                             <p className="text-sm font-semibold text-gray-800">Ingredients:</p>
                             <ul className="list-disc list-inside text-sm text-gray-600">
+
                             {recipe.ingredients.map((ingredient, id) => (
                                 <li key={id}>
                                     <span className="font-medium text-gray-800">{ingredient.name}</span>: {ingredient.amount}
@@ -50,6 +51,7 @@ return (
                         </div>
                     </SheetClose>
                 </SheetContent>
+
             </Sheet>
         </div>
     </div>
