@@ -14,6 +14,7 @@ Um aplicativo de receitas onde os usuários podem explorar receitas divididas po
 > - **Cadastro e Login**: Crie uma conta para salvar suas receitas favoritas ou publicá-las
 
 
+<br>
 
 ## Por que este projeto é útil? 🚀
 
@@ -23,15 +24,15 @@ Este projeto foi desenvolvido com o objetivo de estudar e praticar o Next.js 14,
 - **Código Limpo e Organizado**: Seguindo boas práticas de desenvolvimento, o projeto é fácil de entender e modificar.
 - **Escalabilidade**: A arquitetura permite que o projeto cresça sem perder performance.
 
+> ### Embora seja um aplicativo de receitas, a estrutura é flexível e pode ser adaptada para outros tipos de projetos, como:
+>
+> - Sites de Notícias: Listagem de artigos por categorias e busca eficiente.
+> - Páginas Institucionais: Apresentação de empresas com páginas organizadas e responsivas.
+> - Catálogos de Produtos: Organização de itens em categorias com detalhes específicos.
+>
+> Assim, além de atender à proposta inicial de explorar receitas, o projeto funciona como um modelo de referência para aplicações web com diversas finalidades.
 
-### Embora seja um aplicativo de receitas, a estrutura é flexível e pode ser adaptada para outros tipos de projetos, como:
-
-- Sites de Notícias: Listagem de artigos por categorias e busca eficiente.
-- Páginas Institucionais: Apresentação de empresas com páginas organizadas e responsivas.
-- Catálogos de Produtos: Organização de itens em categorias com detalhes específicos.
-
-Assim, além de atender à proposta inicial de explorar receitas, o projeto funciona como um modelo de referência para aplicações web com diversas finalidades.
-
+<br>
 
 ## Tecnologias Utilizadas 💻
 
