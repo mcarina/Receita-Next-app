@@ -1,6 +1,5 @@
-import Link from 'next/link';
-import { TfiPlus } from "react-icons/tfi";
 import RecipeCard from './RecipeCard';
+import { TfiPlus } from "react-icons/tfi";
 
 const RightSideBar = ({user, recipeInfo, transactions, author}: RightSidebarProps) => {
   return (
@@ -28,14 +27,20 @@ const RightSideBar = ({user, recipeInfo, transactions, author}: RightSidebarProp
         
         <section className="banks">
             <div className="flex w-full justify-between">
-                <h2 className="header-2">Salvos</h2>
-                <Link href="/receitas" className="flex gap-2">
-                    <h2 className=" text-14 font-semibold text-gary-600">
-                        Adicionar
-                    </h2>
-                    <TfiPlus className="size-[20px] max-xl:size-20" color="black"/>
-                </Link>
+                <h2 className="header-2">Minha receitas</h2>
+                <button className="flex gap-2"> 
+                    * Vizualizar *
+                </button>
             </div>
+            
+            <div className="flex w-full justify-between">
+                <h2 className="header-2">Salvos</h2>
+                <button className="flex gap-2">
+                    Adicionar
+                    <TfiPlus className="size-[20px] max-xl:size-20" color="black"/>
+                </button>
+            </div>
+
             {author?.length > 0 && (
                 <div className="relative flex flex-1 flex-col items-center justify-center gap-5">
                     <div className="relative z-10">

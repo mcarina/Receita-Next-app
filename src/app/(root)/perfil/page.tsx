@@ -1,4 +1,3 @@
-import RecipeSideBar from '@/components/RecipeSideBar';
 import RightSideBar from '@/components/RightSideBar'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 import { redirect } from "next/navigation"
@@ -21,12 +20,6 @@ const Perfil = async () => {
           author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
         />
 
-        <RecipeSideBar   
-          user={loggedIn}
-          recipeInfo={recipes}
-          transactions={[]}
-          author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
-        />
     </section>
   )
 }

@@ -1,25 +1,17 @@
-import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RecipeTabItem } from './RecipeTabItem';
 import { getRecipe } from '@/lib/actions/recipe.actions';
 import RecipeInfo from './RecipeInfo';
+import ModalCreate from './ModalCreate';
 
-const Recipes = async ({ id }: RecentRecipes) => {
+const Recipes = async ({ id, user }: RecentRecipes) => {
   
   const recipesData = await getRecipe();
 
   if (!recipesData || !recipesData.recipes.length) {
     return (
       <section className="recent-transactions">
-        <header>
-          <div className="total-balance flex items-center justify-between">
-            <h2 className="recent-transactions-label">Lista de receitas</h2>
-            <Link href={'/receitas'} className="create-btn">
-              Criar Receitas
-            </Link>
-          </div>
-        </header>
-        <p>Não há receitas disponíveis no momento.</p>
+        <p>Erro de conexão.</p>
       </section>
     );
   }
@@ -30,9 +22,9 @@ const Recipes = async ({ id }: RecentRecipes) => {
       <header>
         <div className="total-balance flex items-center justify-between">
           <h2 className="recipes-label">Lista de receitas</h2>
-          <Link href={'receitas'} className="p-btn">
-            Criar Receitas
-          </Link>
+          <div className="p-btn">
+                <ModalCreate />
+          </div>
         </div>
       </header>
 
