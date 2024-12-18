@@ -23,6 +23,19 @@ export const authFormSchema = (type: string) => z.object({
   password: z.string().min(4),
 })
 
+export const recipeSchema = z.object({
+  title: z.string().min(1, "O título é obrigatório"),
+  description: z.string().min(1, "A descrição é obrigatória"),
+  preparation_method: z.string().min(1, "O modo de preparo é obrigatório"),
+  category_id: z.string().min(1, "A categoria é obrigatória"),
+  ingredients: z.array(
+    z.object({
+      name: z.string().min(1, "O nome do ingrediente é obrigatório"),
+      amount: z.string().min(1, "A quantidade é obrigatória"),
+    })
+  ).nonempty("Adicione ao menos um ingrediente"),
+});
+
 interface UrlQueryParams {
   params: string;
   key: string;

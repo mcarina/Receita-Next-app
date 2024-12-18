@@ -8,6 +8,10 @@ const Recipes = async ({ id, user }: RecentRecipes) => {
   
   const recipesData = await getRecipe();
 
+  const uniqueCategories = Array.from(
+    new Set(recipesData.recipes.map((recipe: Recipe) => recipe.category))
+  );
+  
   if (!recipesData || !recipesData.recipes.length) {
     return (
       <section className="recent-transactions">
@@ -30,9 +34,9 @@ const Recipes = async ({ id, user }: RecentRecipes) => {
 
       <Tabs defaultValue={id} className="w-full">
         <TabsList className="recipe-title-tablist">
-          {recipesData.recipes.map((recipe: Recipe) => (
-            <TabsTrigger key={recipe.id} value={recipe.id}>
-              <RecipeTabItem key={recipe.id} recipe={recipe} id={id} />
+        {uniqueCategories.map((category, index) => (
+            <TabsTrigger key={index} value={category}>
+              <RecipeTabItem category={category} />
             </TabsTrigger>
           ))}
         </TabsList>
