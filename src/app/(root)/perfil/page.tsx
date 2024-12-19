@@ -1,6 +1,7 @@
 import RightSideBar from '@/components/RightSideBar'
 import { getLoggedInUser } from '@/lib/actions/user.actions'
 import { redirect } from "next/navigation"
+import MyRecipes from '../minhas-receitas/page';
 
 const Perfil = async () => {
   const loggedIn = await getLoggedInUser();
@@ -8,9 +9,9 @@ const Perfil = async () => {
   
   return (
     <section className="home">
-      <>
-      espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço
-      </>
+        <MyRecipes
+        />
+        
         <RightSideBar 
           user={loggedIn}
         />
