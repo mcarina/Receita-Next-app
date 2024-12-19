@@ -1,22 +1,20 @@
 'use client';
-import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
+
+import { useState } from 'react';
+import { useForm, useFieldArray, Controller } from "react-hook-form";
+
+import { Form } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { createRecipe } from "@/lib/actions/recipe.actions";
 import InputCreateRecipeForm from "./InputCreateRecipeForm";
-import { postRecipe } from "@/lib/actions/recipe.actions";
-import { useForm, useFieldArray } from "react-hook-form";
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { recipeSchema } from '@/lib/utils';
 
-const ModalCreate = ({ type }: { type: string })  => {
-
+const ModalCreate = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState<string | null>(null);
 
-    // const RecipeFormData = recipeSchema(type);
-
-    const form = useForm<z.infer<typeof recipeSchema>>({
-        resolver: zodResolver(recipeSchema),
+    const form = useForm({
         defaultValues: {
             title: "",
             description: "",
@@ -25,85 +23,129 @@ const ModalCreate = ({ type }: { type: string })  => {
             ingredients: [{ name: "", amount: "" }],
         },
     });
-    
 
     const { fields, append, remove } = useFieldArray({
         control: form.control,
         name: "ingredients",
-      });
-    
+    });
 
-    const onSubmit = async (data: z.infer<typeof recipeSchema>) => {
+    const onSubmit = async (data: any) => {
         setIsLoading(true);
+        setMessage(null);
     
         try {
-            const response = await postRecipe(data);
-            console.log("Receita criada com sucesso:", response);
-            alert("Receita criada com sucesso!");
-          form.reset(); // Reseta o formulário após o envio
+            const response = await createRecipe(data);
+    
+            if (response?.error) {
+                setMessage(response.error);
+                return;
+            }
+    
+            setMessage("Receita criada com sucesso!");
+            form.reset();
         } catch (error) {
-            console.error("Erro ao criar receita:", error);
-            alert("Falha ao criar receita.");
+            setMessage("Falha ao criar receita.");
         } finally {
             setIsLoading(false);
         }
     };
-
+    
+    
     return (
-    <Dialog>
-        <DialogTrigger className="flex gap-2">Criar Receitas</DialogTrigger>
+        <Form {...form}>
+            <Dialog>
+                <DialogTrigger className="flex gap-2">Criar Receitas</DialogTrigger>
 
-        <DialogContent>
-        <DialogHeader>
-            <DialogTitle>Criar nova receita?</DialogTitle>
-            <DialogDescription>
-            Crie sua propria receita passo a passo, preenchendo os campos abaixo:
-            </DialogDescription>
-        </DialogHeader>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Criar nova receita?</DialogTitle>
+                        <DialogDescription>
+                            Crie sua própria receita passo a passo, preenchendo os campos abaixo:
+                        </DialogDescription>
+                    </DialogHeader>
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 py-4">
+                    {message && (
+                        <div className="message">
+                            <p className={message.includes("sucesso") ? "text-green-500" : "text-red-500"}>
+                                {message}
+                            </p>
+                        </div>
+                    )}
 
-            <InputCreateRecipeForm id="title" label="Title" {...form.register("title")} />
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-2 py-4">
+                        {/* Campos principais */}
+                        <InputCreateRecipeForm 
+                            control={form.control} 
+                            name="title" 
+                            label="Título" 
+                            placeholder="Título" 
+                        />
 
-            <InputCreateRecipeForm id="description" label="Description" {...form.register("description")}/>
+                        <InputCreateRecipeForm 
+                            control={form.control} 
+                            name="description" 
+                            label="Descrição" 
+                            placeholder="Descrição" 
+                        />
 
-            <InputCreateRecipeForm id="preparation_method" label="Modo de Preparo" type="textarea" className="h-52" {...form.register("preparation_method")}/>
+                        <InputCreateRecipeForm 
+                            control={form.control} 
+                            name="preparation_method" 
+                            label="Modo de Preparo" 
+                            placeholder="Modo de Preparo" 
+                            type="textarea" 
+                            className="h-52" 
+                        />
 
-            {fields.map((field, index) => (
-            <div key={field.id} className="flex gap-2 items-center">
-                <InputCreateRecipeForm
-                id={`ingredient-name-${index}`}
-                label={`Ingrediente ${index + 1}`}
-                {...form.register(`ingredients.${index}.name`)}
-                />
-                <InputCreateRecipeForm
-                id={`ingredient-amount-${index}`}
-                label="Quantidade"
-                {...form.register(`ingredients.${index}.amount`)}
-                />
-                <Button
-                type="button"
-                variant="destructive"
-                onClick={() => remove(index)}
-                >
-                Remover
-                </Button>
-            </div>
-            ))}
+                        <Button type="button" onClick={() => append({ name: "", amount: "" })}>
+                            Adicionar Ingrediente
+                        </Button>
 
-            <Button type="button" onClick={() => append({ name: "", amount: "" })}>
-            Adicionar Ingrediente
-            </Button>
+                        {fields.map((field, index) => (
+                            <div key={field.id || `ingredient-${index}`} className="flex gap-2 items-center">
+                                <Controller
+                                    name={`ingredients.${index}.name`}
+                                    control={form.control} 
+                                    render={({ field }) => (
+                                        <Input
+                                            placeholder={`Ingrediente ${index + 1}`}
+                                            className="col-span-3"
+                                            {...field}
+                                        />
+                                    )}
+                                />
+                                <Controller
+                                    name={`ingredients.${index}.amount`}
+                                    control={form.control}
+                                    render={({ field }) => (
+                                        <Input
+                                            placeholder="Quantidade"
+                                            className="col-span-3"
+                                            {...field}
+                                        />
+                                    )}
+                                />
+                                <Button
+                                    type="button"
+                                    variant="destructive"
+                                    onClick={() => remove(index)}
+                                >
+                                    Remover
+                                </Button>
+                            </div>
+                        ))}
 
-            <DialogFooter>
-            <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Enviando..." : "Enviar"}
-            </Button>
-            </DialogFooter>
-        </form>
-        </DialogContent>
-    </Dialog>
-  );
+
+                        <DialogFooter>
+                            <Button type="submit" disabled={isLoading}>
+                                {isLoading ? "Enviando..." : "Enviar"}
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+        </Form>
+    );
 };
 
 export default ModalCreate;

@@ -7,7 +7,9 @@ export const getRecipe = async () => {
         const response = await Api.get('/recipes');
         const data = response.data;
 
-        if (!data.status) { throw new Error("Erro ao buscar receitas: status inválido"); }
+        if (!data.status) { 
+            throw new Error("Erro ao buscar receitas: status inválido"); 
+        }
 
         const transformedRecipes = data.recipe.data.map((recipe: any) => ({
             id: recipe.id,
@@ -64,31 +66,35 @@ export const getRecipe = async () => {
     }
 };
 
-export const postRecipe = async (recipeData: {
+export const createRecipe = async (recipeData: {
     title: string;
     description: string;
     preparation_method: string;
     category_id: string;
     ingredients: { name: string; amount: string }[];
 }) => {
-
     try {
         const token = cookies().get("access_token");
         if (!token) {
-            console.log("Nenhum token encontrado");
-        return null;
-    }
+            const errorMessage = "Nenhum token encontrado"; // Mensagem de erro
+            console.log(errorMessage);
+            return { error: errorMessage }; // Retorna um objeto com a mensagem de erro
+        }
 
-    const response = await Api.post("/recipes", recipeData, {
-        headers: {
-            Authorization: `Bearer ${token.value}`,
-        },
-    });
+        console.log("Dados enviados para API:", recipeData); // Log dos dados
+        console.log("Token encontrado:", token.value); // Log do token
 
-    return response.data;
-    
+        const response = await Api.post("/recipes", recipeData, {
+            headers: {
+                Authorization: `Bearer ${token.value}`,
+            },
+        });
+
+        console.log("Resposta da API:", response.data); // Log da resposta
+        return response.data;
+
     } catch (error: any) {
         console.error("Erro ao criar receita:", error.response?.data || error.message);
-        throw new Error("Falha ao enviar os dados da receita.");
+        return { error: error.response?.data?.message || error.message }; // Retorna o erro
     }
-    };
+};

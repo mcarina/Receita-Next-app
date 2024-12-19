@@ -112,10 +112,10 @@ declare type SearchParamProps = {
 };
 
 declare interface InputCreateRecipeForm {
-  id?: string;
-  label?: string;
-  value: string;
-  className?: string;
+  control: any;
+  name: string;
+  label: string;
+  placeholder?: string;
   type?: "text" | "textarea";
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 }
