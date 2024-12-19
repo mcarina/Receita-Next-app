@@ -77,7 +77,6 @@ declare interface FooterProps {
 }
 
 declare interface RecentRecipes {
-  user?: User;
   id?: string;
   page: number;
   recipes: { 

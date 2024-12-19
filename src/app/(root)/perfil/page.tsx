@@ -9,13 +9,10 @@ const Perfil = async () => {
   return (
     <section className="home">
       <>
-      espaço
+      espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço espaço
       </>
         <RightSideBar 
           user={loggedIn}
-          // recipeInfo={recipes}
-          // transactions={[]}
-          // author={[{ currentAuthor: 'autor'},{ currentAuthor: 'autor:'}]}
         />
     </section>
   )

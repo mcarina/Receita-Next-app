@@ -1,30 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { formUrlQuery } from "@/lib/utils";
 
 const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
-    const router = useRouter();
     const [showIngredients, setShowIngredients] = useState(false);
-
-    const handleChange = () => {
-        const newUrl = formUrlQuery({
-            params: new URLSearchParams(window.location.search).toString(),
-            key: "id",
-            value: recipe?.id ?? "", 
-        });
-        router.push(newUrl, { scroll: false });
-        };
-    
     
     const toggleIngredients = () => {
         setShowIngredients(prevState => !prevState);
     };
 
 return (
-    <div onClick={handleChange}  className="p-4 border rounded-md shadow-md bg-white space-y-2">
+    <div className="p-4 border rounded-md shadow-md bg-white space-y-2">
         <p className="text-lg font-bold text-gray-900">{recipe.title}</p>
         <p className="text-sm text-gray-700">{recipe.description}</p>
 

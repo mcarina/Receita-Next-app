@@ -4,7 +4,7 @@ import { getRecipe } from '@/lib/actions/recipe.actions';
 import RecipeInfo from './RecipeInfo';
 import ModalCreate from './ModalCreate';
 
-const Recipes = async ({ id, user }: RecentRecipes) => {
+const Recipes = async ({ id }: RecentRecipes) => {
   
   const recipesData = await getRecipe();
 
@@ -34,11 +34,11 @@ const Recipes = async ({ id, user }: RecentRecipes) => {
 
       <Tabs defaultValue={id} className="w-full">
         <TabsList className="recipe-title-tablist">
-        {uniqueCategories.map((category, index) => (
-            <TabsTrigger key={index} value={category}>
-              <RecipeTabItem category={category} />
-            </TabsTrigger>
-          ))}
+          {uniqueCategories.map((category, index) => (
+              <TabsTrigger key={index} value={category}>
+                <RecipeTabItem category={category} />
+              </TabsTrigger>
+            ))}
         </TabsList>
 
         {recipesData.recipes.map((recipe: Recipe) => (
