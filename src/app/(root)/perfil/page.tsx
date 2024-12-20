@@ -9,9 +9,9 @@ const Perfil = async () => {
   
   return (
     <section className="home">
-        {/* <MyRecipes
-        /> */}
-        
+        <>
+        espaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaçoespaço espaço
+        </>
         <RightSideBar 
           user={loggedIn}
         />

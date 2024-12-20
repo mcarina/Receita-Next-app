@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
+import { TiInputChecked } from "react-icons/ti";
 
 const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
     const [showIngredients, setShowIngredients] = useState(false);
@@ -17,6 +18,9 @@ return (
 
         <div>
             <Sheet>
+                {/* <SheetTrigger>
+                    <TiInputChecked className="size-[20px] max-xl:size-15" color="black" />
+                </SheetTrigger> */}
                 <SheetTrigger onClick={toggleIngredients} className="p-btn">
                     {showIngredients ? "See less" : "See more"}
                 </SheetTrigger>
