@@ -1,14 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
-import { TiInputChecked } from "react-icons/ti";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { useRouter } from "next/navigation";
 
 const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
     const [showIngredients, setShowIngredients] = useState(false);
+    const router = useRouter();
     
     const toggleIngredients = () => {
         setShowIngredients(prevState => !prevState);
+    };
+
+    const handleRedirect = () => {
+        router.push("my-recipes/2");
     };
 
 return (
@@ -22,8 +27,13 @@ return (
                     <TiInputChecked className="size-[20px] max-xl:size-15" color="black" />
                 </SheetTrigger> */}
                 <SheetTrigger onClick={toggleIngredients} className="p-btn">
-                    {showIngredients ? "See less" : "See more"}
+                    {showIngredients ? "See less" : "Preview"}
                 </SheetTrigger>
+                
+                <SheetTrigger  onClick={handleRedirect} className="p-btn">
+                    See all
+                </SheetTrigger>
+
                 <SheetContent className="w-full">
                     <SheetClose asChild>
                         <div className="p-5 rounded-md shadow-md bg-white space-y-3">

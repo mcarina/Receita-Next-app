@@ -1,14 +1,21 @@
+"use client"
 import React from 'react'
-
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from './ui/button'
 
 const MyRecipes = ({ recipe }: MyRecipesProps) => {
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push("my-recipes/1");
+};
+
   return (
-    <div className="p-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="p-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {recipe.map((recipeItem) => (
-          <Card key={recipeItem.id} className="flex flex-col h-full">
+          <Card key={recipeItem.id} className="flex flex-col w-[350px]">
             <CardHeader className="flex-grow">
               <h2 className="text-18 font-bold truncate">{recipeItem.title}</h2>
               <p className="text-14 truncate">publicado por: <strong>{recipeItem.user}</strong></p>
@@ -17,7 +24,7 @@ const MyRecipes = ({ recipe }: MyRecipesProps) => {
               <p>Imagem ou outro conteúdo aqui</p>
             </CardContent>
             <CardFooter>
-              <Button>Ver mais...</Button>
+              <Button onClick={handleRedirect}>Ver mais...</Button>
             </CardFooter>
           </Card>            
         ))}
