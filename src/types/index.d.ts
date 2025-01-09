@@ -118,3 +118,17 @@ declare interface InputCreateRecipeForm {
   type?: "text" | "textarea";
   className?: string;
 }
+
+declare interface MyRecipesProps {
+  user?: User;
+  recipe: Array<{
+    id?: string;
+    title: string;
+    description: string;
+    category?: string;
+    ingredients?: Array<{
+      name: string;
+      amount: string;
+    }>;
+  }>;
+};
