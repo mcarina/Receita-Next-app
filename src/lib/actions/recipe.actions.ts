@@ -98,3 +98,32 @@ export const createRecipe = async (recipeData: {
         return { error: error.response?.data?.message || error.message }; // Retorna o erro
     }
 };
+
+export const getRecipeID = async (id: string) => {
+    try {
+        const token = cookies().get("access_token"); 
+        if (!token?.value) {
+            const errorMessage = "Nenhum token encontrado";
+            console.log(errorMessage);
+            return { error: errorMessage };
+        }
+
+        console.log("Token encontrado:", token.value);  // Verifique o token
+
+        const response = await Api.get(`recipes/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token.value}`,  // Garantindo que o token é passado corretamente
+            },
+        });
+
+        if (response.status && response.data.recipe) {
+            return response.data.recipe;
+        } else {
+            return { error: response.data.message || "Erro ao buscar a receita" };
+        }
+    } catch (error: any) {
+        console.error("Erro na requisição:", error.response?.data || error.message);
+        return { error: error.response?.data?.message || "Erro ao buscar a receita" };
+    }
+};
+

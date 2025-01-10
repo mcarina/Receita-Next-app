@@ -7,8 +7,8 @@ import { Button } from './ui/button'
 const MyRecipes = ({ recipe }: MyRecipesProps) => {
   const router = useRouter();
 
-  const handleRedirect = () => {
-    router.push("my-recipes/1");
+  const handleRedirect = (id:string) => {
+    router.push(`my-recipes/${id}`);
 };
 
   return (
@@ -24,7 +24,7 @@ const MyRecipes = ({ recipe }: MyRecipesProps) => {
               <p>Imagem ou outro conteúdo aqui</p>
             </CardContent>
             <CardFooter>
-              <Button onClick={handleRedirect}>Ver mais...</Button>
+              <Button onClick={() => handleRedirect(recipeItem.id)}>Ver mais...</Button>
             </CardFooter>
           </Card>            
         ))}

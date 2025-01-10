@@ -20,6 +20,7 @@ return (
     <div className="p-4 border rounded-md shadow-md bg-white space-y-2">
         <p className="text-lg font-bold text-gray-900">{recipe.title}</p>
         <p className="text-sm text-gray-700">{recipe.description}</p>
+        <p className="text-14 truncate">Publicado por: <strong>{recipe.user}</strong></p>
 
         <div>
             <Sheet>
@@ -27,7 +28,7 @@ return (
                     <TiInputChecked className="size-[20px] max-xl:size-15" color="black" />
                 </SheetTrigger> */}
                 <SheetTrigger onClick={toggleIngredients} className="p-btn">
-                    {showIngredients ? "See less" : "Preview"}
+                    Preview
                 </SheetTrigger>
                 
                 <SheetTrigger  onClick={handleRedirect} className="p-btn">

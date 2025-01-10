@@ -32,7 +32,6 @@ return (
                     </Link>
                 )
             })}
-            USER
         </nav> 
             
         <Footer

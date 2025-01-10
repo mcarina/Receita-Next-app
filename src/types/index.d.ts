@@ -120,6 +120,7 @@ declare interface InputCreateRecipeForm {
 }
 
 declare interface MyRecipesProps {
+  id?: string;
   user?: User;
   recipe: Array<{
     id?: string;
