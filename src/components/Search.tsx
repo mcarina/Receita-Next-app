@@ -1,39 +1,51 @@
+"use client";
+
+import { useState, React } from "react";
 import {
     Command,
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
     CommandList,
-    CommandSeparator,
-    CommandShortcut,
-  } from "@/components/ui/command"
-  
+    CommandItem,
+} from "@/components/ui/command";
+import { getSearch } from "@/lib/actions/recipe.actions";
 
 const Search = () => {
+    const [query, setQuery] = useState("");
+    const [suggestions, setSuggestions] = useState([]);
+
+    const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setQuery(value);
+
+        // if (value.length > 2) {
+            const results = await getSearch(value);
+            setSuggestions(results);
+        // } else {
+        //     setSuggestions([]); 
+        // }
+    };
+
     return (
         <div>
             <Command>
-                <CommandInput placeholder="Clique e pesquise receitas..." />
+                <input
+                    type="text"
+                    placeholder="Digite para buscar receitas..."
+                    value={query}
+                    onChange={handleSearch}
+                    className="p-btn"
+                />
                 <CommandList>
-                    {/* <CommandEmpty>No results found.</CommandEmpty> */}
-                    {/* <CommandGroup heading="Suggestions">
-                    <CommandItem>Calendar</CommandItem>
-                    <CommandItem>Search Emoji</CommandItem>
-                    <CommandItem>Calculator</CommandItem>
-                    </CommandGroup> */}
-                    <CommandSeparator />
-                    {/* <CommandGroup heading="Settings">
-                    <CommandItem>Profile</CommandItem>
-                    <CommandItem>Billing</CommandItem>
-                    <CommandItem>Settings</CommandItem>
-                    </CommandGroup> */}
+                    {suggestions.length > 0 &&
+                        suggestions.map((recipe: { id: number; title: string }) => (
+                            <CommandItem key={recipe.id}>
+                                {recipe.title}
+                            </CommandItem>
+                        ))}
                 </CommandList>
             </Command>
 
         </div>
-    )
-}
+    );
+};
 
-export default Search
+export default Search;

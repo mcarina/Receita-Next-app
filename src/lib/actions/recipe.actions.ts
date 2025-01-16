@@ -127,3 +127,17 @@ export const getRecipeID = async (id: string) => {
     }
 };
 
+export const getSearch = async (query: string) => {
+    if (query.length > 2) {
+        try {
+            const response = await Api.get('/search-recipes', {
+                params: { query },
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao buscar receitas:", error);
+            return [];
+        }
+    }
+    return [];
+};
