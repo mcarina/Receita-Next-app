@@ -13,7 +13,7 @@ const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
     };
 
     const handleRedirect = (id:string) => {
-        router.push(`my-recipes/${id}`);
+        router.push(`recipes/${id}`);
     };
 
 return (
@@ -43,13 +43,15 @@ return (
 
                             <p className="text-sm font-semibold text-gray-800">Ingredients:</p>
                             <ul className="list-disc list-inside text-sm text-gray-600">
-
                             {recipe.ingredients.map((ingredient, id) => (
                                 <li key={id}>
                                     <span className="font-medium text-gray-800">{ingredient.name}</span>: {ingredient.amount}
                                 </li>
                             ))}
                             </ul>
+                    
+                        <p className="text-sm text-gray-700">Modo de preparo: {recipe.preparation_method}</p>
+
                         </div>
                     </SheetClose>
                 </SheetContent>

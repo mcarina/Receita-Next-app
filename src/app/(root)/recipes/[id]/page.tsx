@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import HeaderBox from "@/components/HeaderBox";
 import { getRecipeID } from "@/lib/actions/recipe.actions";
+import EditRecipe from "@/components/EditRecipe";
 
 export default function ReceitasID({ recipe }: MyRecipesProps) {
   const params = useParams();
@@ -34,14 +35,29 @@ export default function ReceitasID({ recipe }: MyRecipesProps) {
 
         <section>
           <article>
-            <h2>{receita.title}</h2>
-            <p>{receita.description}</p>
-            <h3>Ingredientes:</h3>
-            <ul>
-              {receita.ingredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.name}</li>
-              ))}
-            </ul>
+            {/* <h2>{receita.title}</h2> */}
+            {/* <p>{receita.description}</p> */}
+            <h2 className="recipes-label" >Ingredientes:</h2>
+
+            <div className='flex grid-cols-2 gap-8 py-1'>
+              <ul>
+                {receita.ingredients.map((ingredient) => (
+                  <li key={ingredient.id}> - {ingredient.name}</li>
+                ))}
+              </ul>
+              <ul>
+                {receita.ingredients.map((ingredient) => (
+                  <li key={ingredient.id}>- {ingredient.amount}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="py-7">
+              <h2 className="recipes-label" >Modo de preparo:</h2>
+              <ul>
+                  <li> {receita.preparation_method}</li>
+              </ul>
+            </div>
           </article>
         </section>
       </div>

@@ -1,6 +1,5 @@
 import HeaderBox from "@/components/HeaderBox";
-import MyRecipes from "@/components/MyRecipes";
-import { getRecipe } from "@/lib/actions/recipe.actions";
+import Saveds from "@/components/Saveds";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation"
 
@@ -8,8 +7,6 @@ const Saved = async () => {
   const loggedIn = await getLoggedInUser();
   if(!loggedIn) redirect('/sign-in')
 
-    const recipesData = await getRecipe();
-  
   return (
     <div className="Home">
         <div className="home-content">
@@ -21,8 +18,7 @@ const Saved = async () => {
             </header>
         </div>
 
-        <MyRecipes recipe={recipesData.recipes}/>
-
+        <Saveds/>
     </div>
   )
 }

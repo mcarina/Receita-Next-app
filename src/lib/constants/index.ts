@@ -13,8 +13,8 @@ export const sidebarLinks = [
     // },
     {
       // icon: GiCook ,
-      route: "/my-recipes",
-      label: "Myrecipes",
+      route: "/recipes",
+      label: "MyRecipes",
     },
     {
       // icon: GiCook ,

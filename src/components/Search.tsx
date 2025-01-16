@@ -16,12 +16,8 @@ const Search = () => {
         const value = e.target.value;
         setQuery(value);
 
-        // if (value.length > 2) {
-            const results = await getSearch(value);
-            setSuggestions(results);
-        // } else {
-        //     setSuggestions([]); 
-        // }
+        const results = await getSearch(value);
+        setSuggestions(results);
     };
 
     return (

@@ -3,12 +3,13 @@ import React from 'react'
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from './ui/button'
+import { TbTrashOff } from "react-icons/tb";
 
 const MyRecipes = ({ recipe }: MyRecipesProps) => {
   const router = useRouter();
 
   const handleRedirect = (id:string) => {
-    router.push(`my-recipes/${id}`);
+    router.push(`recipes/${id}`);
 };
 
   return (
@@ -23,8 +24,12 @@ const MyRecipes = ({ recipe }: MyRecipesProps) => {
             <CardContent className="flex-grow">
               <p>Imagem ou outro conteúdo aqui</p>
             </CardContent>
-            <CardFooter>
-              <Button onClick={() => handleRedirect(recipeItem.id)}>Ver mais...</Button>
+
+            <CardFooter className="gap-1">
+              <Button className="pr" onClick={() => handleRedirect(recipeItem.id)}>Ver mais...</Button>
+              <Button variant="destructive">
+                <TbTrashOff />
+              </Button>
             </CardFooter>
           </Card>            
         ))}

@@ -50,7 +50,14 @@ declare interface HeaderBoxProps {
 declare type Recipe = {
   id?: string;
   title: string;
-  authorRecipe: string;
+  description: string;
+  preparation_method: string;
+  category?: string;
+  ingredients?: Array<{
+    name: string;
+    amount: string;
+  }>;
+
 };
   
 declare interface signInProps {
