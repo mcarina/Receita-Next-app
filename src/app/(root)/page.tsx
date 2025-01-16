@@ -4,7 +4,7 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
-  const loggedIn = await getLoggedInUser();
+  // const loggedIn = await getLoggedInUser();
 
     return (
       <section className= "home">
@@ -12,8 +12,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <header className="home-header">
             <HeaderBox
               type="greeting"
-              title="Bem-Vindo(a) "
-              user={loggedIn?.name  || ' '}
+              title="Recipe Aplication"
+              // user={loggedIn?.name  || ' '}
               subtext="Descubra novas inspirações culinárias e transforme suas refeições em momentos inesquecíveis."
             />
 

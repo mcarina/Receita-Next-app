@@ -12,8 +12,8 @@ const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
         setShowIngredients(prevState => !prevState);
     };
 
-    const handleRedirect = () => {
-        router.push("my-recipes/2");
+    const handleRedirect = (id:string) => {
+        router.push(`my-recipes/${id}`);
     };
 
 return (
@@ -31,7 +31,7 @@ return (
                     Preview
                 </SheetTrigger>
                 
-                <SheetTrigger  onClick={handleRedirect} className="p-btn">
+                <SheetTrigger onClick={() => handleRedirect(recipe.id)} className="p-btn">
                     See all
                 </SheetTrigger>
 
