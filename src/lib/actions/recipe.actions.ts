@@ -76,7 +76,7 @@ export const createRecipe = async (recipeData: {
     try {
         const token = cookies().get("access_token");
         if (!token) {
-            const errorMessage = "Nenhum token encontrado"; // Mensagem de erro
+            const errorMessage = "Faça seu Login"; // Mensagem de erro
             console.log(errorMessage);
             return { error: errorMessage }; // Retorna um objeto com a mensagem de erro
         }
