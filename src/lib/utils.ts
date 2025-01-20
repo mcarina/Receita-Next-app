@@ -47,3 +47,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   );
 }
 
+export const CardRecipeID = (type: string) => z.object({
+  //My recipe
+  
+})

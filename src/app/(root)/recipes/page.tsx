@@ -1,8 +1,8 @@
-import MyRecipes from "@/components/MyRecipes";
 import HeaderBox from '../../../components/HeaderBox';
 import { getRecipe } from "@/lib/actions/recipe.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation"
+import CardRecipesID from "@/components/CardRecipesID";
 
 const Page = async () => {
   const loggedIn = await getLoggedInUser();
@@ -21,7 +21,7 @@ const Page = async () => {
             </header>
         </div>
 
-        <MyRecipes recipe={recipesData.recipes}/>
+        <CardRecipesID recipe={recipesData.recipes} type="recipes"/>
 
     </div>
   )

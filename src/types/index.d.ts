@@ -126,7 +126,8 @@ declare interface InputCreateRecipeForm {
   className?: string;
 }
 
-declare interface MyRecipesProps {
+declare interface CardRecipesIDProps {
+  type: "saved" | "recipes";
   id?: string;
   user?: User;
   recipe: Array<{

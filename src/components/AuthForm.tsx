@@ -112,8 +112,8 @@ return (
                         <CustomInput control={form.control} name='firstName' label="Nome" placeholder='Seu Nome' />
                         <CustomInput control={form.control} name='lastName' label="Sobrenome" placeholder='Sobrenome' />
                     </div>
-                    <CustomInput control={form.control} name='address1' label="Endereço" placeholder='Seu endereço' />
-                    <CustomInput control={form.control} name='city' label="Cidade" placeholder='Sua cidade' />
+                        <CustomInput control={form.control} name='address1' label="Endereço" placeholder='Seu endereço' />
+                        <CustomInput control={form.control} name='city' label="Cidade" placeholder='Sua cidade' />
                     <div className="flex gap-4">
                         <CustomInput control={form.control} name='state' label="Estado" placeholder='Ex: AM' />
                         <CustomInput control={form.control} name='postalCode' label="CEP" placeholder='Ex: 00000-000' />
