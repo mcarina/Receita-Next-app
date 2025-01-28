@@ -1,5 +1,6 @@
 import HeaderBox from "@/components/HeaderBox";
 import Recipes from "@/components/Recipes";
+import SeePdf from "@/components/SeePdf";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
@@ -19,10 +20,12 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
           </header>
 
-          <Recipes 
+          <SeePdf/>
+
+          {/* <Recipes 
             id={id as string}
             page={currentPage}
-          />
+          /> */}
 
         </div>
         
