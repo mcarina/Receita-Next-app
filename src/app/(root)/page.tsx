@@ -22,10 +22,10 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
           <SeePdf/>
 
-          {/* <Recipes 
+          <Recipes 
             id={id as string}
             page={currentPage}
-          /> */}
+          />
 
         </div>
         
