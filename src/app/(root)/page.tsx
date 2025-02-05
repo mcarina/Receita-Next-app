@@ -20,7 +20,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
 
           </header>
 
-          <SeePdf/>
+          {/* <SeePdf/> */}
 
           <Recipes 
             id={id as string}
