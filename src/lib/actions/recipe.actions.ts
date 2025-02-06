@@ -6,11 +6,7 @@ export const getRecipe = async () => {
     try {
         const response = await Api.get('/recipes');
         const data = response.data;
-
-        if (!data.status) { 
-            throw new Error("Erro ao buscar receitas: status inválido"); 
-        }
-
+        if (!data.status) { throw new Error("Erro ao buscar receitas: status inválido") }
         const transformedRecipes = data.recipe.data.map((recipe: any) => ({
             id: recipe.id,
             title: recipe.title,
@@ -30,8 +26,6 @@ export const getRecipe = async () => {
             recipes: transformedRecipes, // Retorna receitas transformadas
         };
     } catch (error: any) {
-        console.error("Erro ao buscar receitas:", error.message);
-        // Dados mockados para fallback
         const mockRecipes = [
             {
                 id: 1,
@@ -56,7 +50,6 @@ export const getRecipe = async () => {
                 ],
             },
         ];
-
         // Retorna os dados mockados
         return {
             currentPage: 1,
@@ -78,21 +71,12 @@ export const createRecipe = async (recipeData: {
         if (!token) {
             const errorMessage = "Faça seu Login"; // Mensagem de erro
             console.log(errorMessage);
-            return { error: errorMessage }; // Retorna um objeto com a mensagem de erro
-        }
-
-        console.log("Dados enviados para API:", recipeData); // Log dos dados
-        console.log("Token encontrado:", token.value); // Log do token
+            return { error: errorMessage }}
 
         const response = await Api.post("/recipes", recipeData, {
-            headers: {
-                Authorization: `Bearer ${token.value}`,
-            },
+            headers: {Authorization: `Bearer ${token.value}`,},
         });
-
-        console.log("Resposta da API:", response.data); // Log da resposta
         return response.data;
-
     } catch (error: any) {
         console.error("Erro ao criar receita:", error.response?.data || error.message);
         return { error: error.response?.data?.message || error.message }; // Retorna o erro
@@ -107,13 +91,8 @@ export const getRecipeID = async (id: string) => {
             console.log(errorMessage);
             return { error: errorMessage };
         }
-
-        console.log("Token encontrado:", token.value);  // Verifique o token
-
         const response = await Api.get(`recipes/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token.value}`,  // Garantindo que o token é passado corretamente
-            },
+            headers: {Authorization: `Bearer ${token.value}`,},
         });
 
         if (response.status && response.data.recipe) {
@@ -153,9 +132,7 @@ export const destroyRecipeID = async (id: string) => {
 
         console.log("Token encontrado:", token.value);
         const response = await Api.delete(`recipes/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token.value}`,  // Garantindo que o token é passado corretamente
-            },
+            headers: {Authorization: `Bearer ${token.value}`,},
         });
 
         if (response.status && response.data.recipe) {

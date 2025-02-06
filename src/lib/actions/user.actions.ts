@@ -13,7 +13,6 @@ export const signIn = async (email: string, password: string) => {
                 path: '/',
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             });
-            console.log('Token armazenado no cookie:', token);
             return response.data; 
         } else {
             console.error('Erro na resposta da API:', response.data);
@@ -48,9 +47,7 @@ export const getLoggedInUser = async () => {
         }
 
         const response = await Api.get('/user-info', {
-            headers: {
-                Authorization: `Bearer ${token.value}`,
-            },
+            headers: {Authorization: `Bearer ${token.value}`,},
         });
 
         if (response.data.status) {
@@ -74,9 +71,7 @@ export const logoutAccount = async () => {
         }
 
         const response = await Api.post('/logout', {}, { 
-            headers: { 
-                Authorization: `Bearer ${token.value}` 
-            } 
+            headers: {Authorization: `Bearer ${token.value}`} 
         });
         if (response.data.status) {
             cookies().delete('access_token'); // Exclui o cookie
