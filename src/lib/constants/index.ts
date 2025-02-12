@@ -1,8 +1,8 @@
-import { GiNotebook, GiCook, GiChefToque   } from "react-icons/gi";
+import { Coffee, UtensilsCrossed, Users } from "lucide-react"
 
 export const sidebarLinks = [
     {
-      icon: GiChefToque  , 
+      icon: Coffee, 
       route: "/",
       label: "Home",
     },
@@ -12,12 +12,12 @@ export const sidebarLinks = [
     //   label: "Perfil",
     // },
     {
-      // icon: GiCook ,
+      icon: UtensilsCrossed  ,
       route: "/recipes",
       label: "MyRecipes",
     },
     {
-      // icon: GiCook ,
+      icon: Users ,
       route: "/saved",
       label: "Saved",
     },

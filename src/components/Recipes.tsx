@@ -22,15 +22,14 @@ const Recipes = async ({ id }: RecentRecipes) => {
   }
 
   return (
-    <section className="recent-transactions">
+    <section className="home-body">
 
       <header>
-        <div className="total-balance flex items-center justify-between">
-          {/* <h2 className="recipes-label">Lista de receitas</h2> */}
-          <div>
+        <div className="flex gap-4">
+          <div className="relative flex-1">
             <Search/>
           </div>
-          <div className="p-btn">
+          <div className="p-btn1">
                 <ModalCreate />
           </div>
         </div>
@@ -44,13 +43,18 @@ const Recipes = async ({ id }: RecentRecipes) => {
               </TabsTrigger>
             ))}
         </TabsList>
-
+        
+      <div className="grid md:grid-cols-2 gap-6">
         {recipesData.recipes.map((recipe: Recipe) => (
           <TabsContent>
             <RecipeInfo recipe={recipe} id={id}/>
           </TabsContent>
         ))}
-      </Tabs>
+      </div>
+
+     </Tabs>
+
+
     </section>
   );
 };

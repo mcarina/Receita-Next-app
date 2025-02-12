@@ -17,7 +17,7 @@ export default async function RootLayout({
     <main className="flex h-screen w-full font-inter">
         <Sidebar user={loggedIn || null} /> 
 
-        <div className="flex sixe-full flex-col">
+        <div className="flex sixe-full flex-col bg-[#FDF7F2] border ">
           <div className= "root-layout">
             <GiSpellBook className="size-[30px] max-xl:size-30" color="black" />
             <div>

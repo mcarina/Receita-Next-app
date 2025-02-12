@@ -3,10 +3,11 @@ import { getRecipe } from "@/lib/actions/recipe.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation"
 import CardRecipesID from "@/components/CardRecipesID";
+import { ChefHat } from "lucide-react"
 
 const Page = async () => {
   const loggedIn = await getLoggedInUser();
-  if(!loggedIn) redirect('/sign-in')
+  // if(!loggedIn) redirect('/sign-in')
 
     const recipesData = await getRecipe();
   
@@ -15,13 +16,15 @@ const Page = async () => {
         <div className="home-content">
             <header className="home-header">
                 <HeaderBox
-                    title='My recipes'
+                    title='Minhas receitas'
                     subtext='As receitas que você criou ficam salvas aqui ^^'
                 />
             </header>
+  
+          <CardRecipesID recipe={recipesData.recipes} type="recipes"/>
+  
         </div>
 
-        <CardRecipesID recipe={recipesData.recipes} type="recipes"/>
 
     </div>
   )

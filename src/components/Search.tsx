@@ -28,7 +28,7 @@ const Search = () => {
                     placeholder="Digite para buscar receitas..."
                     value={query}
                     onChange={handleSearch}
-                    className="p-btn"
+                    className="pl-10 rounded border bg-white left-3 top-3 h-10"
                 />
                 <CommandList>
                     {suggestions.length > 0 &&

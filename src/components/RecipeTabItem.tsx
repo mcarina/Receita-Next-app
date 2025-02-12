@@ -19,7 +19,7 @@ export const RecipeTabItem = ({ category }: { category: string }) => {
     return (
         <div
             onClick={handleChange}
-            className={cn(`banktab-item`, {
+            className={cn(`tab-item`, {
                 "border-blue-600": isActive,
             })}
         >
