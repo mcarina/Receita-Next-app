@@ -129,8 +129,16 @@ const ModalCreate = () => {
 
                         <InputCreateRecipeForm 
                             control={form.control} 
-                            name="category_id" 
-                            label="Categoria"
+                            name="time" 
+                            label="tempo de preparo"
+                            placeholder="Bolo de Morango com glacer"
+                            className="grid md:grid-cols-3 gap-4"
+                        />
+
+                        <InputCreateRecipeForm 
+                            control={form.control} 
+                            name="porcoes" 
+                            label="Porções"
                             placeholder="Bolo de Morango com glacer"
                             className="grid md:grid-cols-3 gap-4"
                         />
