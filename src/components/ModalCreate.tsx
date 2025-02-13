@@ -9,9 +9,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form } from "@/components/ui/form";
 import { Plus, Trash2 } from "lucide-react"
+import { Label } from "@/components/ui/label";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
 
 import InputCreateRecipeForm from "./InputCreateRecipeForm";
-import ModalSmDetalhes from "./ModalSmDetalhes";
 import ImagemUpload from "./ImagemUpload";
 
 const ModalCreate = () => {
@@ -23,7 +30,11 @@ const ModalCreate = () => {
             title: "",
             description: "",
             preparation_method: "",
-            category_id: "1",
+            category_id: "",
+            time: "", 
+            type_time: "", 
+            porcoes: "", 
+            status: "",
             ingredients: [{ name: "", amount: "" }],
         },
     });
@@ -107,7 +118,25 @@ const ModalCreate = () => {
                         className="h-20" 
                     />
 
-                    <ModalSmDetalhes/>
+                    <div className="grid md:grid-cols-3 gap-4">
+                        <InputCreateRecipeForm 
+                        control={form.control} 
+                        name="category_id" 
+                        label="Categoria"
+                        placeholder="Bolo de Morango com glacer"
+                        className="grid md:grid-cols-3 gap-4"
+                        />
+
+                        <InputCreateRecipeForm 
+                            control={form.control} 
+                            name="category_id" 
+                            label="Categoria"
+                            placeholder="Bolo de Morango com glacer"
+                            className="grid md:grid-cols-3 gap-4"
+                        />
+
+                    </div>
+
 
                     <ImagemUpload/>
 

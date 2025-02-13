@@ -64,6 +64,10 @@ export const createRecipe = async (recipeData: {
     description: string;
     preparation_method: string;
     category_id: string;
+    time: number, 
+    type_time: string, 
+    porcoes: number, 
+    status: string,
     ingredients: { name: string; amount: string }[];
 }) => {
     try {
