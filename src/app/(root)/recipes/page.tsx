@@ -7,7 +7,7 @@ import { ChefHat } from "lucide-react"
 
 const Page = async () => {
   const loggedIn = await getLoggedInUser();
-  // if(!loggedIn) redirect('/sign-in')
+  if(!loggedIn) redirect('/sign-in')
 
     const recipesData = await getRecipe();
   

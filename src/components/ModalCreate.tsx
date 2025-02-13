@@ -72,7 +72,7 @@ const ModalCreate = () => {
 
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 
-                    <InputCreateRecipeForm control={form.control} name="title" label="Título" placeholder="Bolo de Morango com clacer" />
+                    <InputCreateRecipeForm control={form.control} name="title" label="Título" placeholder="Bolo de Morango com glacer" />
 
                     <InputCreateRecipeForm control={form.control} name="description" label="Descrição" placeholder="Receita deliciosa de bolo de morango" />
 

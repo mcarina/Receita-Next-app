@@ -20,24 +20,24 @@ const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
 
 return (
     <section >
-        <div className="p-4 border rounded-md shadow-md bg-white space-y-2 ">
+        <div className="card-border">
             <div className="relative h-48">
                 <Image src="/placeholder.svg?height=200&width=400" alt="img" fill className="object-cover" />
             </div>
             
             <div className="space-y-2">
-                <h2 className="text-lg font-bold text-gray-900">{recipe.title}</h2>
-                <div className="flex items-center gap-4 text-sm text-gray-500">
-                  <span className="flex items-center">
-                    <Clock className="mr-1 h-4 w-4" />
-                    45 min
-                  </span>
-                  <span className="flex items-center">
-                    <Users className="mr-1 h-4 w-4" />
-                    6 porções
-                  </span>
+                <h2>{recipe.title}</h2>
+                <div className="card-subtext">
+                    <span className="flex items-center">
+                        <Clock className="icons-lucide" />
+                        45 min
+                    </span>
+                    <span className="flex items-center">
+                        <Users className="icons-lucide" />
+                        6 porções
+                    </span>
                 </div>
-                <p className="text-gray-600">{recipe.description}</p>
+                <p>{recipe.description.length > 50 ? recipe.description.slice(0, 50) + '...' : recipe.description}</p>
             </div>
 
             <div>

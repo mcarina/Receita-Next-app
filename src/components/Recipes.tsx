@@ -25,7 +25,7 @@ const Recipes = async ({ id }: RecentRecipes) => {
     <section className="home-body">
 
       <header>
-        <div className="flex gap-4">
+        <div className="nav-home">
           <div className="relative flex-1">
             <Search/>
           </div>

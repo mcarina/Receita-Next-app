@@ -1,4 +1,5 @@
 'use client';
+import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { cn, formUrlQuery } from "@/lib/utils";
 
@@ -7,6 +8,7 @@ export const RecipeTabItem = ({ category }: { category: string }) => {
     const router = useRouter(); 
     const isActive = searchParams.get("id") === category;
 
+    
     const handleChange = () => {
         const newUrl = formUrlQuery({
             params: searchParams.toString(),
@@ -15,7 +17,7 @@ export const RecipeTabItem = ({ category }: { category: string }) => {
         });
         router.push(newUrl, { scroll: false });
     };
-
+    
     return (
         <div
             onClick={handleChange}
@@ -23,13 +25,13 @@ export const RecipeTabItem = ({ category }: { category: string }) => {
                 "border-blue-600": isActive,
             })}
         >
-            <p
+            <li
                 className={cn("text-16 line-clamp-1 flex-1 font-medium text-gray-500", {
                     "text-blue-600": isActive,
                 })}
             >
                 {category}
-            </p>
+            </li>
         </div>
     );
 };

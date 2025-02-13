@@ -45,6 +45,13 @@
 
 @layer utilities {
 
+  h2{
+    @apply text-lg font-bold text-gray-900;
+  }
+
+  p{
+    @apply text-gray-600 line-clamp-2 ;
+  }
   .flex-center {
     @apply flex items-center justify-center;
   }
@@ -97,6 +104,10 @@
     @apply text-14 rounded border px-4 py-2.5 font-semibold text-gray-600;
   }
 
+  .icons-lucide{
+    @apply mr-1 h-4 w-4;
+  }
+
   /* Home */
   .home {
     @apply no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll;
@@ -114,11 +125,22 @@
     @apply flex w-full flex-col gap-6;
   }
 
+  .nav-home{
+    @apply flex gap-4 bg-white p-4 rounded-lg shadow-sm;
+  }
 
   .recipe-title-tablist {
     @apply custom-scrollbar mb-4 flex w-full flex-nowrap;
   }
 
+  /* Cards */
+  .card-border{
+    @apply p-4 border rounded-md shadow-md bg-white space-y-2;
+  }
+
+  .card-subtext{
+    @apply flex items-center gap-4 text-sm text-gray-500;
+  }
   /* Right sidebar */
   .right-sidebar {
     @apply no-scrollbar hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w-[355px] xl:overflow-y-scroll !important;
