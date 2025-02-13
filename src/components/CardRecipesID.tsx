@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
-import { Clock, Users, Eye, Trash2, Edit3 } from "lucide-react"
+import { Clock, Users, Eye, Trash2, Edit3, BookmarkX } from "lucide-react"
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 
 import { destroyRecipeID } from "@/lib/actions/recipe.actions";
@@ -87,6 +87,12 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
                 <Eye className="icons-lucide" />
                 Ver mais...
                 </Button>
+
+                {type === "saved" && (
+                <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700">
+                  <BookmarkX className="icons-lucide" />
+                </Button> 
+                )}
 
               {type === "recipes" && (
                 <>
