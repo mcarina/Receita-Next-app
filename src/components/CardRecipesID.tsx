@@ -7,6 +7,7 @@ import { Clock, Users, Eye, Trash2, Edit3 } from "lucide-react"
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 
 import { destroyRecipeID } from "@/lib/actions/recipe.actions";
+import ModalCreate from "./ModalCreate";
 
 const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
   const router = useRouter();
@@ -27,6 +28,12 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
 
   return (
     <div className="home-content">
+        <div className="flex items-center justify-between gap-4 bg-white p-4 rounded-lg shadow-sm">
+          <div className="flex gap-4 p-btn1">
+              <ModalCreate/>
+          </div>
+        </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipe.map((recipeItem) => (
           <Card key={recipeItem.id} className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -48,10 +55,14 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
                   <Users className="mr-1 h-4 w-4" />
                   6 porções
                 </span>
-                <span className="flex items-center">
-                  <Eye className="mr-1 h-4 w-4" />
-                  1k
-                </span>
+                
+                {type === "recipes" && (
+                  <span className="flex items-center">
+                    <Eye className="mr-1 h-4 w-4" />
+                    1k
+                  </span>
+                )}
+
               </div>
               <p className="text-gray-600 line-clamp-2">Imagem ou outro conteúdo aqui</p>
             </CardHeader>

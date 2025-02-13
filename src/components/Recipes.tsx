@@ -2,8 +2,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RecipeTabItem } from './RecipeTabItem';
 import { getRecipe } from '@/lib/actions/recipe.actions';
 import RecipeInfo from './RecipeInfo';
-import ModalCreate from './ModalCreate';
 import Search from "./Search";
+import { Button } from "./ui/button";
 
 const Recipes = async ({ id }: RecentRecipes) => {
   
@@ -29,8 +29,8 @@ const Recipes = async ({ id }: RecentRecipes) => {
           <div className="relative flex-1">
             <Search/>
           </div>
-          <div className="p-btn1">
-                <ModalCreate />
+          <div>
+            <Button className="p-btn1"> Buscar </Button>
           </div>
         </div>
       </header>
