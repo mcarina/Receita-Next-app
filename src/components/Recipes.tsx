@@ -5,10 +5,10 @@ import RecipeInfo from './RecipeInfo';
 import Search from "./Search";
 import { Button } from "./ui/button";
 
-const Recipes = async ({ id }: RecentRecipes) => {
+const Recipes = async ({ id }: RecipeProps) => {
+  const recipesData = await getRecipe(); // Busca todas as receitas
+  const activeRecipes = recipesData.recipes.filter((recipe: RecipeProps) => recipe.status === "ativo");
   
-  const recipesData = await getRecipe();
-
   const uniqueCategories = Array.from(
     new Set(recipesData.recipes.map((recipe: Recipe) => recipe.category))
   );
@@ -45,7 +45,7 @@ const Recipes = async ({ id }: RecentRecipes) => {
         </TabsList>
         
       <div className="grid md:grid-cols-2 gap-6">
-        {recipesData.recipes.map((recipe: Recipe) => (
+        {activeRecipes.map((recipe: Recipe) => (
           <TabsContent>
             <RecipeInfo recipe={recipe} id={id}/>
           </TabsContent>

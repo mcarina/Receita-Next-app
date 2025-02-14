@@ -11,6 +11,10 @@ export const getRecipe = async () => {
             id: recipe.id,
             title: recipe.title,
             description: recipe.description,
+            status: recipe.status,
+            time: recipe.time,
+            typeTime: recipe.type_time,
+            porcoes: recipe.porcoes,
             category: recipe.category?.category || 'N/A',
             user: recipe.user?.name || 'N/A',
             ingredients: Array.isArray(recipe.ingredients)

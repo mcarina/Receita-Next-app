@@ -9,7 +9,7 @@ import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { destroyRecipeID } from "@/lib/actions/recipe.actions";
 import ModalCreate from "./ModalCreate";
 
-const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
+const CardRecipesID = ({ recipe, type }: RecipeProps) => {
   const router = useRouter();
   const [recipes, setRecipes] = useState(recipe); 
 
@@ -26,12 +26,22 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
     alert("receita deletada com sucesso")
   }
 
-  const getStatusColor = (status: Project["status"]) => {
+  const getStatusLabel = (status) => {
     switch (status) {
-      case "Publicada":
-        return "text-green-500"
-      case "Rascunho":
-        return "text-yellow-500"
+      case "ativo":
+        return "Publicado";
+      case "inativo":
+        return "Rascunho";
+      default:
+        return "Desconhecido";
+    }
+  }
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "ativo":
+        return "absolute top-2 right-2 z-10 bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+      case "inativo":
+        return "absolute top-2 right-2 z-10 bg-yellow-500  text-white text-xs px-2 py-1 rounded-full"
       default:
         return "text-muted-foreground"
     }
@@ -52,8 +62,8 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
           <Card key={recipeItem.id} className="card-border">
               <div className="relative h-48">
               {type === "recipes" && (
-                <div className="absolute top-2 right-2 z-10 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                  Publicada
+                <div className={`ml-auto ${getStatusColor(recipeItem.status)}`}>
+                    {getStatusLabel(recipeItem.status)}
                 </div>
               )}
                 <Image src="/placeholder.svg?height=200&width=400" alt="Recipe 1" fill className="object-cover" />
@@ -64,11 +74,11 @@ const CardRecipesID = ({ recipe, type }: CardRecipesIDProps) => {
               <div className="card-subtext">
                 <span className="flex items-center">
                   <Clock className="icons-lucide" />
-                  45 min
+                  {recipeItem.time}{recipeItem.typeTime}
                 </span>
                 <span className="flex items-center">
                   <Users className="icons-lucide" />
-                  6 porções
+                  {recipeItem.porcoes} porções
                 </span>
                 
                 {type === "recipes" && (

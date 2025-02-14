@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image"
 import { Clock, Users } from "lucide-react"
 
-const RecipeInfo = ({ recipe }: RecipeInfoProps) => {
+const RecipeInfo = ({ recipe }: RecipeProps) => {
     const [showIngredients, setShowIngredients] = useState(false);
     const router = useRouter();
     
@@ -30,11 +30,11 @@ return (
                 <div className="card-subtext">
                     <span className="flex items-center">
                         <Clock className="icons-lucide" />
-                        45 min
+                        {recipe.time}{recipe.typeTime}
                     </span>
                     <span className="flex items-center">
                         <Users className="icons-lucide" />
-                        6 porções
+                        {recipe.porcoes} porções
                     </span>
                 </div>
                 <p>{recipe.description.length > 50 ? recipe.description.slice(0, 50) + '...' : recipe.description}</p>

@@ -9,14 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form } from "@/components/ui/form";
 import { Plus, Trash2 } from "lucide-react"
-import { Label } from "@/components/ui/label";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
 
 import InputCreateRecipeForm from "./InputCreateRecipeForm";
 import ImagemUpload from "./ImagemUpload";
@@ -41,13 +33,15 @@ const ModalCreate = () => {
 
     const { fields, append, remove } = useFieldArray({ control: form.control, name: "ingredients"});
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: any, status: string) => {
         setIsLoading(true);
         setMessage(null);
-        try {
-            const response = await createRecipe(data);
     
-            if (response?.error) {setMessage(response.error);
+        try {
+            const response = await createRecipe({ ...data, status });
+    
+            if (response?.error) {
+                setMessage(response.error);
                 return;
             }
             setMessage("Receita criada com sucesso!");
@@ -118,30 +112,53 @@ const ModalCreate = () => {
                         className="h-20" 
                     />
 
-                    <div className="grid md:grid-cols-3 gap-4">
-                        <InputCreateRecipeForm 
-                        control={form.control} 
-                        name="category_id" 
-                        label="Categoria"
-                        placeholder="Bolo de Morango com glacer"
-                        className="grid md:grid-cols-3 gap-4"
-                        />
+                    <div className="grid md:grid-cols-3 gap-2">
 
                         <InputCreateRecipeForm 
                             control={form.control} 
-                            name="time" 
-                            label="tempo de preparo"
-                            placeholder="Bolo de Morango com glacer"
-                            className="grid md:grid-cols-3 gap-4"
+                            name="category_id" 
+                            label="Categoria"
+                            type="select"
+                            placeholder="Selecione"
+                            options={[
+                                { value: "1", label: "breakfast" },
+                                { value: "2", label: "Lunch" },
+                                { value: "3", label: "Dinner" },
+                            ]}
+                            className=""
                         />
+                        <div className="flex gap-3">
+                            <InputCreateRecipeForm 
+                                control={form.control} 
+                                name="time" 
+                                label="Tempo"
+                                placeholder="30"
+                                className="w-20"
+                            />
 
-                        <InputCreateRecipeForm 
-                            control={form.control} 
-                            name="porcoes" 
-                            label="Porções"
-                            placeholder="Bolo de Morango com glacer"
-                            className="grid md:grid-cols-3 gap-4"
-                        />
+                            <InputCreateRecipeForm 
+                                control={form.control} 
+                                name="type_time" 
+                                label="hrs/min"
+                                type="select"
+                                placeholder="Selecione um tempo"
+                                options={[
+                                    { value: "horas", label: "horas" },
+                                    { value: "minutos", label: "minutos" },
+
+                                ]}
+                                className="w-20"
+                            />
+
+                            <InputCreateRecipeForm 
+                                control={form.control} 
+                                name="porcoes" 
+                                label="Porções"
+                                placeholder="4"
+                                className="w-20"
+                            />
+
+                        </div>
 
                     </div>
 
@@ -150,10 +167,21 @@ const ModalCreate = () => {
 
                     <div className="flex justify-end gap-2 pt-4 border-t">
                         <DialogFooter>
-                            <Button variant="outline" className="bg-yellow-50 hover:bg-yellow-200">
-                            Salvar Rascunho
+                            <Button 
+                                type="button" 
+                                disabled={isLoading} 
+                                variant="outline" 
+                                className="bg-yellow-50 hover:bg-yellow-200"
+                                onClick={() => onSubmit(form.getValues(), "inativo")}
+                            >
+                                Salvar Rascunho
                             </Button>
-                            <Button type="submit" disabled={isLoading} className="bg-[#0D6EFD]">
+                            <Button 
+                                type="button" 
+                                disabled={isLoading} 
+                                className="bg-[#0D6EFD]"
+                                onClick={() => onSubmit(form.getValues(), "ativo")}
+                            >
                                 {isLoading ? "Enviando..." : "Enviar"}
                             </Button>
                         </DialogFooter>

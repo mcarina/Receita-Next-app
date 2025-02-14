@@ -13,7 +13,7 @@ declare type User = {
     postalCode: string;
     dateOfBirth: string;
     ssn: string;
-    recipes: Recipe[];
+    recipes: RecipeProps[];
   };
 
 declare interface getUserInfoProps {
@@ -47,17 +47,23 @@ declare interface HeaderBoxProps {
   user?: string;
 }
 
-declare type Recipe = {
+declare interface RecipeProps {
+  type: "saved" | "recipes";
   id?: string;
-  title: string;
-  description: string;
-  preparation_method: string;
-  category?: string;
-  ingredients?: Array<{
-    name: string;
-    amount: string;
+  user?: User;
+  recipe: Array<{
+    id?: string;
+    title: string;
+    time: number;
+    type_time:string;
+    description: string;
+    status: string;
+    category?: string;
+    ingredients?: Array<{
+      name: string;
+      amount: string;
+    }>;
   }>;
-
 };
   
 declare interface signInProps {
@@ -83,33 +89,13 @@ declare interface FooterProps {
   type?: 'mobile' | 'desktop'
 }
 
-declare interface RecentRecipes {
-  id?: string;
-  page: number;
-  recipes: { 
-    id: string;
-    title: string;
-    description: string;
-    category: string;
-    ingredients: Array<{
-      name: string;
-      amount: string;
-    }>;
-  }[];
-}
-
 declare interface RecipeTabItemProps {
   id?: string;
-  recipe: Recipe[
+  recipe: RecipeProps[
     {
       category: string;
     }
   ];
-}
-
-declare interface RecipeInfoProps {
-  recipe: Recipe;
-  id?: string;
 }
 
 declare type SearchParamProps = {
@@ -125,19 +111,3 @@ declare interface InputCreateRecipeForm {
   type?: "text" | "textarea";
   className?: string;
 }
-
-declare interface CardRecipesIDProps {
-  type: "saved" | "recipes";
-  id?: string;
-  user?: User;
-  recipe: Array<{
-    id?: string;
-    title: string;
-    description: string;
-    category?: string;
-    ingredients?: Array<{
-      name: string;
-      amount: string;
-    }>;
-  }>;
-};
