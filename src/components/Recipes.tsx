@@ -35,24 +35,38 @@ const Recipes = async ({ id }: RecipeProps) => {
         </div>
       </header>
 
-      <Tabs defaultValue={id} className="w-full">
+      <Tabs defaultValue="todos" className="w-full">
         <TabsList className="recipe-title-tablist">
+          <TabsTrigger value="todos">Todos</TabsTrigger>
           {uniqueCategories.map((category, index) => (
-              <TabsTrigger key={index} value={category}>
-                <RecipeTabItem category={category} />
-              </TabsTrigger>
-            ))}
+            <TabsTrigger key={index} value={category}>
+              <RecipeTabItem category={category} />
+            </TabsTrigger>
+          ))}
         </TabsList>
-        
-      <div className="grid md:grid-cols-2 gap-6">
-        {activeRecipes.map((recipe: Recipe) => (
-          <TabsContent>
-            <RecipeInfo recipe={recipe} id={id}/>
+
+        {/* Exibe todas as receitas quando "Todos" é selecionado */}
+        <TabsContent value="todos">
+          <div className="grid md:grid-cols-2 gap-6">
+            {activeRecipes.map((recipe: RecipeProps) => (
+              <RecipeInfo key={recipe.id} recipe={recipe} id={id} />
+            ))}
+          </div>
+        </TabsContent>
+
+        {/* Exibe receitas filtradas por categoria */}
+        {uniqueCategories.map((category) => (
+          <TabsContent key={category} value={category}>
+            <div className="grid md:grid-cols-2 gap-6">
+              {activeRecipes
+                .filter((recipe) => recipe.category === category)
+                .map((recipe: RecipeProps) => (
+                  <RecipeInfo key={recipe.id} recipe={recipe} id={id} />
+                ))}
+            </div>
           </TabsContent>
         ))}
-      </div>
-
-     </Tabs>
+      </Tabs>
 
 
     </section>

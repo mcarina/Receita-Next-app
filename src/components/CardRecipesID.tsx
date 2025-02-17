@@ -17,6 +17,10 @@ const CardRecipesID = ({ recipe, type }: RecipeProps) => {
     router.push(`recipes/${id}`);
   };
 
+  const handleRedirectVerMais = (id: string) => {
+    router.push(`recipes/${id}/edit`);
+  };
+
   const handleDelete = async (id:string) => {
     const confirmDelete = window.confirm("Tem certeza de que deseja deletar esta receita?");
     if (!confirmDelete) return;
@@ -106,7 +110,7 @@ const CardRecipesID = ({ recipe, type }: RecipeProps) => {
 
               {type === "recipes" && (
                 <>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => handleRedirectVerMais(recipeItem.id)}>
                   <Edit3 className="icons-lucide" />
                 </Button>
 
