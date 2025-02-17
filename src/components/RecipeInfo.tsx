@@ -1,14 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
 import Image from "next/image"
 import { Clock, Users, Bookmark, BookmarkCheck  } from "lucide-react"
 
+import { getSavedRecipe } from "@/lib/actions/saved.actions";
+import { saveRecipe } from "@/lib/actions/saved.actions";
+
 const RecipeInfo = ({ recipe }: RecipeProps) => {
+    const [isSaved, setIsSaved] = useState(false);
     const [showIngredients, setShowIngredients] = useState(false);
     const router = useRouter();
+
     
     const toggleIngredients = () => {
         setShowIngredients(prevState => !prevState);
@@ -16,6 +21,15 @@ const RecipeInfo = ({ recipe }: RecipeProps) => {
 
     const handleRedirect = (id:string) => {
         router.push(`recipes/${id}`);
+    };
+
+    const handleSaveRecipe = async () => {
+        try {
+            setIsSaved(!isSaved);
+            alert(isSaved ? "Receita removida dos favoritos" : "Receita salva!");
+        } catch (error) {
+            console.error("Erro ao salvar receita:", error);
+        }
     };
 
 return (
@@ -52,10 +66,13 @@ return (
                             See all
                         </SheetTrigger>
                         
-                        <div className="p-btn2">
-                            <Bookmark  className="h-5 w-5"  />
-                            {/* <BookmarkCheck className="h-5 w-5" /> */}
-                        </div>
+                        <button className="p-btn2"  onClick={handleSaveRecipe}>
+                            {isSaved ? (
+                                <BookmarkCheck className="h-5 w-5 text-green-500" />
+                            ) : (
+                                <Bookmark className="h-5 w-5" />
+                            )}
+                        </button>
                     </div>
 
                     <SheetContent className="w-full">
@@ -74,7 +91,7 @@ return (
                                 </ul>
                         
                                 <h2 className="font-semibold mb-2">Modo de preparo:</h2>
-                                <p className="text-gray-600">{recipe.preparation_method}</p>
+                                <p className="text-gray-600">{recipe.preparationMethod}</p>
                             </div>
                         </SheetClose>
                     </SheetContent>

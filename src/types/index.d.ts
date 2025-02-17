@@ -59,6 +59,7 @@ declare interface RecipeProps {
     description: string;
     status: string;
     category?: string;
+    preparationMethod: string;
     ingredients?: Array<{
       name: string;
       amount: string;

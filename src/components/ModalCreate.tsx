@@ -143,8 +143,8 @@ const ModalCreate = () => {
                                 type="select"
                                 placeholder="Selecione um tempo"
                                 options={[
-                                    { value: "horas", label: "horas" },
-                                    { value: "minutos", label: "minutos" },
+                                    { value: "hrs", label: "horas" },
+                                    { value: "min", label: "minutos" },
 
                                 ]}
                                 className="w-20"

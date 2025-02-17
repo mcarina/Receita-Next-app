@@ -16,6 +16,7 @@ export const getRecipe = async () => {
             typeTime: recipe.type_time,
             porcoes: recipe.porcoes,
             category: recipe.category?.category || 'N/A',
+            preparationMethod: recipe.preparation_method,
             user: recipe.user?.name || 'N/A',
             ingredients: Array.isArray(recipe.ingredients)
                 ? recipe.ingredients.map((ingredient: any) => ({
