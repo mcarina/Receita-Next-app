@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
 import Image from "next/image"
-import { Clock, Users } from "lucide-react"
+import { Clock, Users, Bookmark, BookmarkCheck  } from "lucide-react"
 
 const RecipeInfo = ({ recipe }: RecipeProps) => {
     const [showIngredients, setShowIngredients] = useState(false);
@@ -51,6 +51,11 @@ return (
                         <SheetTrigger onClick={() => handleRedirect(recipe.id)} className="p-btn2">
                             See all
                         </SheetTrigger>
+                        
+                        <div className="p-btn2">
+                            <Bookmark  className="h-5 w-5"  />
+                            {/* <BookmarkCheck className="h-5 w-5" /> */}
+                        </div>
                     </div>
 
                     <SheetContent className="w-full">

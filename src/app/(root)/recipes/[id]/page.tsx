@@ -4,7 +4,7 @@ import Image from "next/image"
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Users } from "lucide-react"
+import { Clock, Users, Bookmark, BookmarkCheck } from "lucide-react"
 
 import { getRecipeID } from "@/lib/actions/recipe.actions";
 
@@ -41,6 +41,10 @@ export default function ReceitasID({ user }: FooterProps) {
               <div className="flex items-center gap-3">
                   <Users  className="h-5 w-5"  />
                   <span className="flex items-center">{receita.porcoes}_porções</span>
+              </div>
+              <div className="flex items-center gap-3">
+                  <Bookmark  className="h-5 w-5"  />
+                  {/* <BookmarkCheck className="h-5 w-5" /> */}
               </div>
                 </div>
             </div>
