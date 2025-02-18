@@ -51,7 +51,7 @@ return (
                         {recipe.porcoes} porções
                     </span>
                 </div>
-                <p>{recipe.description.length > 50 ? recipe.description.slice(0, 50) + '...' : recipe.description}</p>
+                <p>{recipe.description.length > 30 ? recipe.description.slice(0, 30) + '...' : recipe.description}</p>
             </div>
 
             <div>
