@@ -38,6 +38,7 @@ export const getRecipe = async () => {
                 description: "This is a mock description for recipe 1.",
                 category: "Breakfast",
                 user: "John Doe",
+                status: "ativo",
                 ingredients: [
                     { name: "Ingredient 1", amount: "2 cups" },
                     { name: "Ingredient 2", amount: "1 tbsp" },
@@ -49,12 +50,14 @@ export const getRecipe = async () => {
                 description: "This is a mock description for recipe 2.",
                 category: "Dinner",
                 user: "Jane Doe",
+                status: "ativo",
                 ingredients: [
                     { name: "Ingredient A", amount: "100g" },
                     { name: "Ingredient B", amount: "200ml" },
                 ],
             },
         ];
+        
         // Retorna os dados mockados
         return {
             currentPage: 1,
