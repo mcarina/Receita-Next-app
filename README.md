@@ -6,7 +6,7 @@ Um aplicativo de receitas onde os usuários podem explorar receitas divididas po
 - [Docker](https://www.docker.com/) - Contêineres para facilitar a implantação e execução do aplicativo.
 - [Laravel 11](https://github.com/mcarina/Receitas-Next-Backend-Laravel) - Caso tenha interesse em usar o meu back-end, desenvolvido para essa aplicação.
 
-![image](https://github.com/user-attachments/assets/a3ca35df-7a3e-4b8d-8691-494c0a0fd37f)
+![image](https://github.com/user-attachments/assets/37371d22-ec47-4d56-8bcc-eb178edcde25)
 
 
 ## Instalação ⬇️
