@@ -2,22 +2,12 @@
 
 Um aplicativo de receitas onde os usuários podem explorar receitas divididas por categorias, buscar receitas e salvar suas favoritas.
 
->## Funcionalidades ⭐
->
-> - **Categorias de Receitas**: Navegue por diferentes categorias:
->   - Café da Manhã;
->   - Almoço;
->   - Janta.
->
-> - **Busca de Receitas**: Utilize o método de busca para encontrar receitas específicas.
->
-> - **Cadastro e Login**: Crie uma conta para salvar suas receitas favoritas ou publicá-las
-
-## Tecnologias Utilizadas 💻
-
-- [Next.js](https://nextjs.org/) - Um framework React para desenvolvimento de aplicações web.
+## Funcionalidades e Tecnologias Utilizadas 💻
 - [Docker](https://www.docker.com/) - Contêineres para facilitar a implantação e execução do aplicativo.
 - [Laravel 11](https://github.com/mcarina/Receitas-Next-Backend-Laravel) - Caso tenha interesse em usar o meu back-end, desenvolvido para essa aplicação.
+
+![image](https://github.com/user-attachments/assets/a3ca35df-7a3e-4b8d-8691-494c0a0fd37f)
+
 
 ## Instalação ⬇️
 _Pré-requisitos: Docker_
