@@ -1,47 +1,33 @@
 "use client";
 
-import { useState, React } from "react";
-import {
-    Command,
-    CommandList,
-    CommandItem,
-} from "@/components/ui/command";
-import { getSearch } from "@/lib/actions/recipe.actions";
+import { useState } from "react";
+import { Command } from "@/components/ui/command";
 
-const Search = () => {
+const Search = ({ onSearch }: { onSearch: (query: string) => void }) => {
     const [query, setQuery] = useState("");
-    const [suggestions, setSuggestions] = useState([]);
 
-    const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setQuery(value);
-
-        const results = await getSearch(value);
-        setSuggestions(results);
+        onSearch(value); // Chama a função passada por prop
     };
 
     return (
-        <div>
-            <Command>
-                <input
-                    type="text"
-                    placeholder="Digite para buscar receitas..."
-                    value={query}
-                    onChange={handleSearch}
-                    className="pl-10 rounded border bg-white left-3 top-3 h-10"
-                />
-                <CommandList>
-                    {suggestions.length > 0 &&
-                        suggestions.map((recipe: { id: number; title: string }) => (
-                            <CommandItem key={recipe.id}>
-                                {recipe.title}
-                            </CommandItem>
-                        ))}
-                </CommandList>
-            </Command>
-
+        <div className="nav-home">
+            <div className="relative flex-1">
+                <Command>
+                    <input
+                        type="text"
+                        placeholder="Digite para buscar receitas..."
+                        value={query}
+                        onChange={handleSearch}
+                        className="pl-10 rounded border bg-white left-3 top-3 h-10"
+                    />
+                </Command>
+            </div>
         </div>
     );
 };
 
 export default Search;
+ 

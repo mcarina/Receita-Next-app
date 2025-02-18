@@ -4,7 +4,7 @@ import { sidebarLinks } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { GiSpellBook } from "react-icons/gi";
+import { ChefHat } from "lucide-react"
 import Footer from './Footer'
 
 const Sidebar = ({user}: SiderbarProps) => {
@@ -14,10 +14,10 @@ const Sidebar = ({user}: SiderbarProps) => {
 return (
     <section className="sidebar">
         <nav className="flex flex-col gap-2">
-            <Link href="/" className="mb-8 cursor-pointer flex items-center gap-2">
-                <GiSpellBook className="w-9 h-7" color="#0D6EFD" />
-                <h1 className="sidebar-logo bg-[#FDF7F2]">Recipe App</h1>
-            </Link>
+                <div className="flex items-center gap-2">
+                    <ChefHat className="w-8 h-8 text-[#0D6EFD]" />
+                    <h1 className="sidebar-logo">Recipe App</h1>
+                </div>
 
             {sidebarLinks.map((item) => {
                 

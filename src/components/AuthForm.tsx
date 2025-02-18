@@ -13,6 +13,7 @@ import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { signIn, signUp} from '@/lib/actions/user.actions'
+import { ChefHat } from "lucide-react"
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -83,8 +84,8 @@ const AuthForm = ({ type }: { type: string }) => {
 return (
     <section className="auth-form">
         <header className="flex flex-col gap-5 md:gap-8">
-            <Link href="/" className="mb-12 cursor-pointer flex items-center gap-1">
-                <GiSpellBook className="size-[30px] max-xl:size-15" color="black" />
+            <Link href="/" className="flex items-center gap-2">
+                <ChefHat className="w-8 h-8 text-black" />
                 <h1 className="sidebar-logo">Recipe App</h1>
             </Link>
 
