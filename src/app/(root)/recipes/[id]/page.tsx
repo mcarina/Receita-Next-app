@@ -77,13 +77,18 @@ export default function ReceitasID({ user }: FooterProps) {
                   <h2 className="text-2xl font-bold mb-4">Ingredientes</h2>
                   <Card>
                     <CardContent className="p-4">
-                    <ul className="space-y-2">
-                    {receita.ingredients.map((ingredient) => (
-                      <li className="flex items-center gap-2" key={ingredient.id}>- 
-                        <span className="font-semibold">{ingredient.name}:</span> 
-                        {ingredient.amount}</li>
-                      ))}
-                    </ul>
+                    {receita?.ingredients?.length ? (
+                      <ul className="space-y-2">
+                        {receita.ingredients.map((ingredient) => (
+                          <li className="flex items-center gap-2" key={ingredient.id}>- 
+                            <span className="font-semibold">{ingredient.name}:</span> 
+                            {ingredient.amount}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>-</p>
+                    )}
                     </CardContent>
                   </Card>
                 </section>

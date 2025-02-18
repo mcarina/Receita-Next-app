@@ -6,7 +6,7 @@ import CardRecipesID from "@/components/CardRecipesID";
 
 const Page = async () => {
   const loggedIn = await getLoggedInUser();
-  if(!loggedIn) redirect('/sign-in')
+  // if(!loggedIn) redirect('/sign-in')
 
     const recipesData = await getRecipe();
   

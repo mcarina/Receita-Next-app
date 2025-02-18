@@ -6,7 +6,7 @@ import { redirect } from "next/navigation"
 
 const Saved = async () => {
   const loggedIn = await getLoggedInUser();
-  if(!loggedIn) redirect('/sign-in')
+  // if(!loggedIn) redirect('/sign-in')
 
      const recipesData = await getRecipe();
 

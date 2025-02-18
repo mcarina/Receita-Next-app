@@ -56,6 +56,19 @@ export const getRecipe = async () => {
                     { name: "Ingredient B", amount: "200ml" },
                 ],
             },
+            {
+                id: 3,
+                title: "Recipe 3",
+                description: "This is a mock description for recipe 3.",
+                category: "Dinner",
+                user: "Jake Doe",
+                status: "inativo",
+                ingredients: [
+                    { name: "Ingredient A", amount: "100g" },
+                    { name: "Ingredient B", amount: "200ml" },
+                ],
+            },
+
         ];
         
         // Retorna os dados mockados
