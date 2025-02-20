@@ -1,19 +1,17 @@
 'use client'
-import { useState } from 'react'
-import Link from 'next/link'
-import { GiSpellBook } from "react-icons/gi";
+import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
 
 import { z } from "zod"
+import { ChefHat, Loader2 } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
+import { Button } from "@/components/ui/button"
 import { CustomInput } from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
-import { Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { signIn, signUp} from '@/lib/actions/user.actions'
-import { ChefHat } from "lucide-react"
 
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -51,13 +49,8 @@ const AuthForm = ({ type }: { type: string }) => {
     
                 const newUser = await signUp(userData); 
     
-                if (newUser) {
-                    setUser(newUser); // Armazena os dados do usuário
-                    router.push('/'); 
-                } else {
-                    console.error('Erro ao criar o usuário');
-                    // Exibir mensagem de erro para o usuário aqui
-                }
+                if (newUser) {setUser(newUser); router.push('/'); 
+                } else { console.error('Erro ao criar o usuário')}
             }
     
             // Lógica de login permanece a mesma
@@ -65,11 +58,8 @@ const AuthForm = ({ type }: { type: string }) => {
                 const response = await signIn(data.email, data.password);
                 
                 if (response && response.token) {
-                    setUser(response);
-                    router.push('/');
-                } else {
-                    console.error('Erro ao fazer login');
-                }
+                    setUser(response);router.push('/');
+                } else {console.error('Erro ao fazer login')}
             }
         } catch (error) {
             console.log(error);
@@ -92,7 +82,9 @@ return (
             <div className="flex flex-col gap-1 md:gap-3">
                 <h2 className="text-24 lg:text-29 font-semibold text-gray-900">
                     {user ? 'Link Account' : type === 'sign-in' ? 'Sign In' : 'Sign Up'}
-                    <p className="text-16 font-normal text-gray-600"> {user ? "Link your account to get started" : "Please enter yout details"} </p>
+                    <p className="text-16 font-normal text-gray-600"> 
+                        {user ? "Link your account to get started" : "Please enter yout details"} 
+                    </p>
                 </h2>
             </div>
         </header>
@@ -113,19 +105,10 @@ return (
                     </>
                 )}
 
-                    <CustomInput
-                        control={form.control}
-                        name="email"
-                        label="Email"
-                        placeholder="Digite seu Email" 
-                    />
-                    <CustomInput
-                        control={form.control}
-                        name="password"
-                        label="Senha"
-                        placeholder="Digite sua senha"
-                        type="password" 
-                    />
+                    <CustomInput control={form.control} name="email" label="Email" placeholder="Digite seu Email" />
+
+                    <CustomInput control={form.control} name="password" label="Senha" placeholder="Digite sua senha" type="password" />
+                    
                     <Button type="submit" disabled={isLoading}>
                         {isLoading ? (
                             <>
@@ -135,17 +118,18 @@ return (
                         ) : (
                             type === 'sign-in' ? 'Entre' : 'Cadastre-se'
                         )}
+                    
                     </Button>
                 </form>
             </Form>
 
-            <footer className="flex justify-center gap-1">
+            <footer className="auth-formFooter">
                 <p className="text-14 font-normal text-gray-600">
-                {type === 'sign-in' ? "Não possui conta?" : "Já tem cadastro?"}
+                    {type === 'sign-in' ? "Não possui conta?" : "Já tem cadastro?"}
                 </p>
 
                 <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link">
-                {type === 'sign-in' ? 'Cadastre-se ' : 'Sign in'}
+                    {type === 'sign-in' ? 'Cadastre-se ' : 'Sign in'}
                 </Link>
             </footer>
             
